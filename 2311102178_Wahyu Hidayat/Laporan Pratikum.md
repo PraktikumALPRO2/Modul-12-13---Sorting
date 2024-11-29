@@ -3,8 +3,8 @@
 
 <br>
 
-<h2 align="center"><strong>MODUL XI</strong></h2>
-<h2 align="center"><strong> PENCARIAN NILAI EKSTRIM PADA HIMPUNAN DATA </strong></h2>
+<h2 align="center"><strong>MODUL XII-XIII -</strong></h2>
+<h2 align="center"><strong> PENGURUTAN DATA </strong></h2>
 
 <br>
 
@@ -41,299 +41,99 @@
 ------
 
 ## I. Dasar Teori
-### Definisi Pencarian Nilai Ekstrim
-Pencarian nilai ekstrem (maksimum dan minimum) adalah proses untuk menemukan elemen terbesar dan terkecil dalam sebuah kumpulan data. Operasi ini penting dalam berbagai aplikasi, termasuk analisis data, pengolahan citra, dan optimisasi algoritma. Nilai ekstrem sering digunakan untuk mengidentifikasi outlier, mengevaluasi kinerja, atau memahami batasan data [1].
+### Definisi Pengurutan Data
+Pengurutan data adalah proses mengatur elemen-elemen dalam suatu daftar berdasarkan urutan tertentu, seperti urutan menaik atau menurun. Teknik pengurutan ini digunakan secara luas di berbagai bidang untuk meningkatkan efisiensi pencarian, analisis data, dan pemrosesan lainnya.
 
-#### 1. Pencarian Nilai Ekstrim pada Array Bertipe Data Dasar
-Array adalah struktur data sederhana yang menyimpan elemen dengan tipe data yang sama dalam urutan tertentu. Pencarian nilai ekstrem pada array bertipe data dasar, seperti integer atau float, dilakukan dengan:
+#### 1. Ide Algoritma Selection Sort
+Algoritma selection sort didasarkan pada konsep mencari elemen terkecil (atau terbesar) dari daftar yang belum diurutkan dan menempatkannya pada posisi yang sesuai. Proses ini diulangi untuk setiap elemen dalam daftar hingga seluruh daftar terurut. Prinsip dasarnya adalah membagi daftar menjadi dua bagian: bagian yang sudah diurutkan dan bagian yang belum diurutkan, lalu secara bertahap memperluas bagian yang sudah diurutkan dengan menambahkan elemen yang ditemukan【1】【2】.
 
-1. Inisialisasi Awal: Elemen pertama array digunakan sebagai nilai awal untuk maksimum dan minimum.
-2. Iterasi: Setiap elemen dalam array dibandingkan dengan nilai maksimum atau minimum yang saat ini tersimpan.
-3. Pembaharuan Nilai: Jika elemen lebih besar dari nilai maksimum atau lebih kecil dari nilai minimum, nilainya diperbarui.
+#### 2. Algoritma Selection Sort
+Langkah-langkah selection sort dapat dijelaskan sebagai berikut:
 
-Metode ini memiliki kompleksitas waktu O(n), di mana n adalah jumlah elemen dalam array.
+1. Mulai dari indeks pertama, temukan elemen terkecil di bagian daftar yang belum diurutkan.
+2. Tukarkan elemen terkecil tersebut dengan elemen di posisi awal bagian yang belum diurutkan.
+3. Geser batas bagian yang belum diurutkan satu elemen ke kanan.
+4. Ulangi langkah 1-3 hingga semua elemen terurut.
+Kompleksitas waktu selection sort dalam kasus terbaik, rata-rata, dan terburuk adalah O(n^2), di mana n adalah jumlah elemen dalam daftar. Algoritma ini tidak efisien untuk daftar berukuran besar tetapi sederhana untuk diimplementasikan【1】【3】.
 
-#### 2. Pencarian Nilai Ekstrim pada Array dengan Struktur Data Khusus
-Pada array dengan struktur data tambahan, pencarian nilai ekstrem dapat dilakukan lebih efisien:
+#### 3. Ide Algoritma Insertion Sort
+Algoritma insertion sort bekerja dengan cara membangun bagian daftar yang terurut secara bertahap. Elemen dari bagian yang belum diurutkan dimasukkan satu per satu ke dalam posisi yang tepat di bagian yang sudah diurutkan. Prinsip utamanya adalah memanfaatkan fakta bahwa bagian kecil dari daftar yang terurut dapat dipertahankan dengan biaya minimal untuk penyisipan elemen baru【4】【5】.
 
-1. Array Terurut: Jika array sudah diurutkan, nilai minimum adalah elemen pertama, dan nilai maksimum adalah elemen terakhir. Waktu akses ekstrem menjadi O(1), tetapi biaya sorting tetap O(nlogn) [2].
-2. Heap:
-   - Heap Maksimum: Struktur ini memastikan elemen terbesar selalu berada di akar (node teratas).
-   - Heap Minimum: Struktur ini memastikan elemen terkecil berada di akar.
-Waktu akses ke nilai ekstrem hanya O(1), sedangkan operasi lain, seperti penyisipan atau penghapusan, memiliki kompleksitas O(logn) [3].
-Heap digunakan dalam berbagai aplikasi, seperti algoritma Dijkstra untuk pencarian jalur terpendek dan heap sort.
-3. Balanced Binary Search Tree (BST): 
-Dalam BST, nilai minimum berada di node paling kiri, dan nilai maksimum di node paling kanan. Kompleksitas pencarian ekstrem dalam BST adalah O(logn) untuk pohon seimbang, tetapi bisa memburuk menjadi O(n) jika pohon tidak seimbang [4].
+#### 4. Algoritma Insertion Sort
+Langkah-langkah insertion sort adalah sebagai berikut:
+1. Mulai dari elemen kedua dalam daftar, anggap elemen pertama sudah terurut.
+2. Ambil elemen berikutnya dan bandingkan dengan elemen dalam bagian yang sudah diurutkan.
+3. Geser elemen yang lebih besar ke kanan untuk membuat ruang bagi elemen yang sedang dimasukkan.
+4. Tempatkan elemen tersebut pada posisi yang sesuai dalam bagian yang sudah diurutkan.
+5. Ulangi langkah 2-4 untuk semua elemen dalam daftar.
+Kompleksitas waktu insertion sort adalah O(n) dalam kasus terbaik (daftar sudah hampir terurut) dan O(n^2) dalam kasus terburuk (daftar terbalik). Algoritma ini efektif untuk daftar kecil dan bekerja dengan baik pada data yang hampir terurut【4】【6】.
 
 ## II. UNGUIDED
-## 1. Program untuk Mencari Berat Anak Kelinci Terkecil dan Terbesar
+## 1. 
 #### Source Code
 ```go
-package main
 
-import (
-	"fmt"
-)
-
-func main() {
-	var n int
-	fmt.Print("Masukkan jumlah anak kelinci: ")
-	fmt.Scan(&n)
-
-	// Validasi jumlah kelinci
-	if n <= 0 {
-		fmt.Println("Jumlah kelinci harus lebih dari 0.")
-		return
-	}
-
-	// Input berat anak kelinci
-	weights := make([]float64, n)
-	fmt.Println("Masukkan berat anak kelinci:")
-	for i := 0; i < n; i++ {
-		fmt.Printf("Berat anak kelinci ke-%d: ", i+1)
-		fmt.Scan(&weights[i])
-	}
-
-	// Inisialisasi nilai min dan max
-	minWeight := weights[0]
-	maxWeight := weights[0]
-
-	// Cari nilai minimum dan maksimum
-	for _, weight := range weights {
-		if weight < minWeight {
-			minWeight = weight
-		}
-		if weight > maxWeight {
-			maxWeight = weight
-		}
-	}
-
-	// Cetak hasil
-	fmt.Printf("Berat terkecil: %.2f\n", minWeight)
-	fmt.Printf("Berat terbesar: %.2f\n", maxWeight)
-}
 ```
 #### Screenshoot Source Code
-![Screenshot 2024-11-19 062703](https://github.com/user-attachments/assets/77df98cc-93fa-45f8-86ed-5ae05f50e8bf)
 
 #### Screenshoot Output
-![Screenshot 2024-11-19 062709](https://github.com/user-attachments/assets/fee6f304-a40b-47a6-93f3-924a2128320d)
 
 #### Deskripsi Program
-Program ini digunakan untuk mencatat berat anak kelinci yang akan dijual ke pasar. Program membaca sejumlah berat kelinci dari input, kemudian menentukan berat terkecil dan terbesar di antara data yang diberikan.
 
 #### Algoritma Program
-1. Input jumlah anak kelinci N.
-2. Masukkan berat N anak kelinci ke dalam array.
-3. Iterasi melalui array untuk menemukan nilai minimum dan maksimum.
-4. Cetak nilai minimum dan maksimum.
 
 #### Cara Kerja
-1. Program meminta pengguna memasukkan jumlah anak kelinci yang akan ditimbang.
-2. Berat anak kelinci diinput satu per satu dan disimpan dalam array weights.
-3. Program menggunakan iterasi untuk memeriksa setiap elemen dalam array:
-   - Jika berat lebih kecil dari nilai minWeight, nilai minWeight diperbarui.
-   - Jika berat lebih besar dari nilai maxWeight, nilai maxWeight diperbarui.
-4. Setelah iterasi selesai, program mencetak berat terkecil dan terbesar dengan format dua desimal.
 
-## 2. Program untuk Menghitung Berat Total dan Rata-rata Ikan di Setiap Wadah
+## 2. 
 #### Source Code
 ```go
-package main
 
-import (
-	"fmt"
-)
-
-func main() {
-	var x, y int
-
-	// Input jumlah ikan dan kapasitas wadah
-	fmt.Print("Masukkan jumlah ikan yang dijual (x): ")
-	fmt.Scan(&x)
-	fmt.Print("Masukkan jumlah ikan per wadah (y): ")
-	fmt.Scan(&y)
-
-	// Validasi input
-	if x <= 0 || y <= 0 {
-		fmt.Println("Jumlah ikan dan kapasitas wadah harus lebih dari 0.")
-		return
-	}
-
-	// Input berat ikan
-	weights := make([]float64, x)
-	fmt.Println("Masukkan berat ikan:")
-	for i := 0; i < x; i++ {
-		fmt.Printf("Berat ikan ke-%d: ", i+1)
-		fmt.Scan(&weights[i])
-	}
-
-	// Proses pengelompokan ikan ke dalam wadah
-	var totalWeights []float64
-	for i := 0; i < x; i += y {
-		end := i + y
-		if end > x {
-			end = x
-		}
-
-		// Hitung total berat untuk satu wadah
-		var total float64
-		for j := i; j < end; j++ {
-			total += weights[j]
-		}
-		totalWeights = append(totalWeights, total)
-	}
-
-	// Cetak total berat dan rata-rata setiap wadah
-	fmt.Println("\nHasil:")
-	for i, total := range totalWeights {
-		average := total / float64(y)
-		if i == len(totalWeights)-1 {
-			average = total / float64(x%y) // Penyesuaian untuk wadah terakhir jika kurang dari y
-		}
-		fmt.Printf("Wadah %d: Total berat = %.2f, Rata-rata = %.2f\n", i+1, total, average)
-	}
-}
 ```
 #### Screenshoot Source Code
-![Screenshot 2024-11-19 063725](https://github.com/user-attachments/assets/1b18143b-8ced-4a2d-ab24-b187bcf4f959)
 
 #### Screenshoot Output
-![Screenshot 2024-11-19 063730](https://github.com/user-attachments/assets/2cddda32-6839-44f6-a463-a8e5d986b877)
-
-#### Deskripsi Program
-Program ini membaca jumlah ikan yang dijual dan jumlah ikan per wadah, lalu menghitung total berat ikan di setiap wadah dan rata-rata berat ikan di setiap wadah. Program ini mengelompokkan berat ikan berdasarkan jumlah ikan per wadah yang ditentukan.
-
-#### Algoritma Program
-1. Input bilangan x (jumlah ikan yang dijual) dan y (jumlah ikan per wadah).
-2. Masukkan berat x ikan ke dalam array.
-3. Kelompokkan ikan ke dalam beberapa wadah, masing-masing berisi hingga y ikan.
-4. Untuk setiap wadah:
-   - Hitung total berat ikan.
-   - Hitung rata-rata berat ikan.
-5. Cetak total berat ikan di setiap wadah (dalam array).
-6. Cetak rata-rata berat ikan di setiap wadah.
-
-
-#### Cara Kerja
-1. Program meminta pengguna memasukkan jumlah ikan (x) dan kapasitas setiap wadah (y).
-2. Berat x ikan dimasukkan satu per satu ke dalam array weights.
-3. Program membagi array weights ke dalam beberapa kelompok berdasarkan kapasitas y:
-   - Untuk setiap kelompok, total berat dihitung.
-   - Rata-rata berat dihitung dengan membagi total berat dengan jumlah ikan dalam kelompok tersebut.
-4. Program mencetak total berat dan rata-rata berat untuk setiap wadah.
-
-## 3. Program untuk Menghitung Berat Minimum, Maksimum, dan Rata-rata Balita
-#### Source Code
-```go
-package main
-
-import (
-	"fmt"
-)
-
-// Definisi tipe data untuk array berat balita
-type arrBalita [100]float64
-
-// Subprogram untuk menghitung berat minimum dan maksimum
-func hitungMinMax(arrBerat arrBalita, n int, bMin *float64, bMax *float64) {
-	*bMin = arrBerat[0]
-	*bMax = arrBerat[0]
-
-	for i := 1; i < n; i++ {
-		if arrBerat[i] < *bMin {
-			*bMin = arrBerat[i]
-		}
-		if arrBerat[i] > *bMax {
-			*bMax = arrBerat[i]
-		}
-	}
-}
-
-// Subprogram untuk menghitung rata-rata berat balita
-func hitungRata(arrBerat arrBalita, n int) float64 {
-	var total float64 = 0
-	for i := 0; i < n; i++ {
-		total += arrBerat[i]
-	}
-	return total / float64(n)
-}
-
-// Fungsi utama
-func main() {
-	var n int
-	var berat arrBalita
-
-	// Input jumlah data balita
-	fmt.Print("Masukkan banyak data berat balita: ")
-	fmt.Scan(&n)
-
-	// Validasi jumlah balita
-	if n <= 0 || n > 100 {
-		fmt.Println("Jumlah balita harus antara 1 hingga 100.")
-		return
-	}
-
-	// Input berat balita
-	fmt.Println("Masukkan berat balita:")
-	for i := 0; i < n; i++ {
-		fmt.Printf("Masukkan berat balita ke-%d: ", i+1)
-		fmt.Scan(&berat[i])
-	}
-
-	// Deklarasi variabel untuk hasil
-	var bMin, bMax float64
-
-	// Panggil subprogram hitungMinMax
-	hitungMinMax(berat, n, &bMin, &bMax)
-
-	// Panggil subprogram hitungRata
-	rataRata := hitungRata(berat, n)
-
-	// Output hasil
-	fmt.Printf("\nBerat balita minimum: %.2f kg\n", bMin)
-	fmt.Printf("Berat balita maksimum: %.2f kg\n", bMax)
-	fmt.Printf("Rata-rata berat balita: %.2f kg\n", rataRata)
-}
-```
-
-#### Screenshoot Source Code
-![Screenshot 2024-11-19 064310](https://github.com/user-attachments/assets/d4c9941f-a677-4283-830a-02fc8bc4ba11)
-
-#### Screenshoot Output
-![Screenshot 2024-11-19 064315](https://github.com/user-attachments/assets/7cd5f3fc-5c60-4b98-97d5-6aa2e731c950)
 
 
 #### Deskripsi Program
-Program ini dirancang untuk mencatat berat balita di Posyandu. Petugas akan memasukkan data berat balita ke dalam array. Program menghitung berat terkecil, terbesar, dan rata-rata berat dari data yang diinput.
+
 
 #### Algoritma Program
-1. Input jumlah balita n.
-2. Input berat balita ke dalam array.
-3. Hitung nilai minimum dan maksimum menggunakan iterasi.
-4. Hitung rata-rata dengan menjumlahkan semua berat dan membaginya dengan n.
-5. Tampilkan berat minimum, maksimum, dan rata-rata.
+
 
 #### Cara Kerja
-1. Input Data:
-   - Program meminta pengguna memasukkan jumlah balita (n).
-   - Berat masing-masing balita dimasukkan ke dalam array arrBalita.
-2. Hitung Minimum dan Maksimum:
-   - Subprogram hitungMinMax menerima array berat, menghitung nilai minimum dan maksimum menggunakan pointer, dan memperbarui variabel bMin dan bMax.
-3. Hitung Rata-rata:
-   - Subprogram hitungRata menghitung jumlah total berat balita dan membaginya dengan jumlah balita (n) untuk mendapatkan rata-rata.
-4. Output Hasil:
-   - Program mencetak berat balita minimum, maksimum, dan rata-rata dengan dua angka di belakang koma.
+
+
+## 3. 
+#### Source Code
+```go
+
+```
+
+#### Screenshoot Source Code
+
+#### Screenshoot Output
+
+
+#### Deskripsi Program
+
+
+#### Algoritma Program
+
+#### Cara Kerja
 
 
 ### Kesimpulan
-Pencarian nilai ekstrem dapat dilakukan secara sederhana pada array dasar atau lebih efisien dengan memanfaatkan struktur data tertentu. Pemilihan metode tergantung pada kebutuhan efisiensi dan karakteristik dataset.
+Selection sort dan insertion sort adalah algoritma pengurutan sederhana. Selection sort bekerja dengan mencari elemen terkecil lalu memindahkannya ke posisi yang tepat, sedangkan insertion sort menyisipkan elemen ke tempat yang sesuai di bagian yang sudah terurut. Keduanya cocok untuk data kecil, tetapi kurang efisien untuk data besar karena memiliki kompleksitas waktu O(n^2) pada kasus rata-rata dan terburuk.
 
 ## Referensi 
-[1] J. Smith, Data Analysis and Interpretation, 3rd ed. New York: Academic Press, 2020.
+[1] T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein, Introduction to Algorithms, 3rd ed. Cambridge, MA: MIT Press, 2009.
 
-[2] T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein, Introduction to Algorithms, 4th ed. MIT Press, 2022.
+[2] R. Sedgewick and K. Wayne, Algorithms, 4th ed. Boston, MA: Addison-Wesley, 2011.
 
-[3] D. Knuth, The Art of Computer Programming: Sorting and Searching, 2nd ed. Addison-Wesley, 1998.
+[3] M. A. Weiss, Data Structures and Algorithm Analysis in C++, 4th ed. Upper Saddle River, NJ: Pearson, 2014.
 
-[4] S. Dasgupta, C. Papadimitriou, and U. Vazirani, Algorithms, McGraw Hill, 2008.
+[4] S. Dasgupta, C. H. Papadimitriou, and U. Vazirani, Algorithms, New York, NY: McGraw-Hill, 2008.
+
+[5] A. Drozdek, Data Structures and Algorithms in C++, 4th ed. Boston, MA: Cengage Learning, 2013.
+
+[6] J. Kleinberg and É. Tardos, Algorithm Design, Boston, MA: Pearson, 2006.
