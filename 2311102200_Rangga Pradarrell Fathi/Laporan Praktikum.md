@@ -684,5 +684,7 @@ Program ini digunakan untuk mengelola koleksi buku di sebuah perpustakaan atau t
 
 # <strong> Refrensi </strong>
 [1] Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein. (2009). "Introduction to Algorithms" (3rd Edition). MIT Press.
+
 [2] Donald E. Knuth. (1998). "The Art of Computer Programming, Volume 3: Sorting and Searching" (2nd Edition). Addison-Wesley Professional.
+
 [3] Jurnal: "A Comparative Study of Sorting Algorithms" - International Journal of Computer Applications
