@@ -3,7 +3,7 @@
 
 <br>
 
-<h2 align="center"><strong>MODUL XII-XIII -</strong></h2>
+<h2 align="center"><strong>MODUL XII-XIII </strong></h2>
 <h2 align="center"><strong> PENGURUTAN DATA </strong></h2>
 
 <br>
