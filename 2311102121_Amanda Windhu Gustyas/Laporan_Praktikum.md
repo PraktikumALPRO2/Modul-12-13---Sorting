@@ -54,6 +54,73 @@ Sama halnya apabila array yang akan diurutkan adalah bertipe data struct, maka t
 
 ## II. GUIDED
 
+### 1. Hercules, preman terkenal seantero ibukota, memiliki kerabat di banyak daerah. Tentunya Hercules sangat suka mengunjungi semua kerabatnya itu. <br/> Diberikan masukan nomor rumah dari semua kerabatnya di suatu daerah, buatlah program rumahkerabat yang akan menyusun nomor-nomor rumah kerabatnya secara terurut membesar menggunakan algoritma selection sort.<br/> Masukan dimulai dengan sebuah integer n (0 < n < 1000), banyaknya daerah kerabat Hercules tinggal. Isi n baris berikutnya selalu dimulai dengan sebuah integer m (0 < m < 1000000) yang menyatakan banyaknya rumah kerabat di daerah tersebut, diikuti dengan rangkaian bilangan bulat positif, nomor rumah para kerabat. <br/> Keluaran terdiri dari n baris, yaitu rangkaian rumah kerabatnya terurut membesar di masing-masing daerah.<br/> ![image](https://github.com/user-attachments/assets/b3e2290f-db20-4a73-96a0-a16a733d537e) <br/> Keterangan: Terdapat 3 daerah dalam contoh input, dan di masing-masing daerah mempunyai 5, 6, dan 3 kerabat.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func SelectionSortAscending(arr []int) {
+	for i := 0; i < len(arr)-1; i++ {
+		minIdx := i
+		for j := i + 1; j < len(arr); j++ {
+			if arr[j] < arr[minIdx] {
+				minIdx = j
+			}
+		}
+	
+		arr[i], arr[minIdx] = arr[minIdx], arr[i]
+	}
+}
+
+func main() {
+	var n int
+	fmt.Scan(&n)
+
+	if n <= 0 || n >= 1000 {
+		fmt.Println("Nilai n harus antara 1 dan 999.")
+		return
+	}
+
+	for i := 0; i < n; i++ {
+		var m int
+		fmt.Scan(&m)
+
+		if m <= 0 || m >= 1000000 {
+			fmt.Println("Nilai m harus antara 1 dan 999999.")
+			return
+		}
+
+		
+		arr := make([]int, m)
+		for j := 0; j < m; j++ {
+			fmt.Scan(&arr[j])
+		}
+
+		
+		SelectionSortAscending(arr)
+
+		
+		for j, num := range arr {
+			if j > 0 {
+				fmt.Print(" ")
+			}
+			fmt.Print(num)
+		}
+		fmt.Println()
+	}
+}
+```
+## Output: ![image](https://github.com/user-attachments/assets/dcad3bc1-ba98-42bf-a86b-583599c6bb07)
+
+
+### 2. 
+
+
+
 
 
 
