@@ -302,7 +302,6 @@ termasuk data yang dicari mediannya. Data masukan diakhiri dengan bilangan bulat
 
 ### 3.Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
 
-![image](https://github.com/user-attachments/assets/64ac0f9e-108b-4131-a37a-f80ddc1212c0)
 
 **Masukan** terdiri dari beberapa baris. Baris pertama adalah bilangan bulat N yang menyatakan 
 banyaknya data buku yang ada di dalam perpustakaan. N baris berikutnya, masing-masingnya 
@@ -311,7 +310,6 @@ bulat yang menyatakan rating buku yang akan dicari.
 
 **Keluaran** terdiri dari beberapa baris. Baris pertama adalah data buku terfavorit, baris kedua adalah lima judul buku dengan rating tertinggi, selanjutnya baris terakhir adalah data buku yang dicari sesuai rating yang diberikan pada masukan baris terakhir.
 
-![image](https://github.com/user-attachments/assets/e2ecab74-aab1-40e1-887f-1d8874995c00)
 
 ### Source Code :
 ```go
