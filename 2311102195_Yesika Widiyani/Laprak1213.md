@@ -214,4 +214,91 @@ Keluaran adalah median yang diminta, satu data per baris.
 ![carbon (14)](https://github.com/user-attachments/assets/e8132a79-1703-47ea-b2ac-2836593d3b09)
 
 ### Screenshot Output
+![image](https://github.com/user-attachments/assets/9a524072-dbf7-46c7-9b4c-117de41d5d68)
+
+### Deskripsi Program
+Program ini menghitung median dari rangkaian data bilangan bulat positif yang terus bertambah, di mana perintah pencetakan median diberikan melalui masukan angka 0. Program dirancang untuk bekerja secara efisien meskipun data yang dimasukkan mencapai jutaan elemen.
+
+**Algoritma Program**  
+
+1. **Inisialisasi**:  
+   - Buat dua heap:  
+     - **MaxHeap**: Menyimpan setengah data terkecil (elemen terbesar di atas).  
+     - **MinHeap**: Menyimpan setengah data terbesar (elemen terkecil di atas).  
+
+2. **Baca Input**:  
+   - Terima angka satu per satu.  
+   - Jika angka:  
+     - **Positif**: Masukkan ke salah satu heap dengan aturan:  
+       - Masukkan ke **MaxHeap** jika lebih kecil atau sama dengan elemen terbesar di **MaxHeap**.  
+       - Masukkan ke **MinHeap** jika lebih besar.  
+       - Seimbangkan jumlah elemen di kedua heap.  
+     - **0**: Hitung dan cetak median:  
+       - Jika jumlah elemen tidak seimbang, median adalah elemen terbesar di **MaxHeap**.  
+       - Jika seimbang, median adalah rata-rata elemen terbesar di **MaxHeap** dan elemen terkecil di **MinHeap** (dibulatkan ke bawah).  
+     - **-5313**: Hentikan program.  
+
+**Cara Kerja Program Secara Singkat**  
+
+1. **Data Masuk**:  
+   - Data dipisah ke **MaxHeap** (elemen kecil) dan **MinHeap** (elemen besar) agar median dapat dihitung secara dinamis.  
+
+2. **Seimbangkan Heap**:  
+   - Jika salah satu heap memiliki elemen lebih dari satu dibandingkan heap lainnya, pindahkan elemen antar heap untuk menjaga keseimbangan.  
+
+3. **Hitung Median**:  
+   - Jika **MaxHeap** lebih banyak elemen, median adalah elemen teratas **MaxHeap**.  
+   - Jika kedua heap seimbang, median adalah rata-rata teratas dari **MaxHeap** dan **MinHeap**.  
+
+4. **Efisiensi**:  
+   - Operasi heap (\(O(\log n)\)) memastikan program tetap cepat meski data berjumlah besar.  
+
+## Unguided-3
+### Study Case
+Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
+![image](https://github.com/user-attachments/assets/cd60a6bf-dbfd-460d-abe8-11f0b190f2de)
+
+Masukan terdiri dari beberapa baris. Baris pertama adalah bilangan bulat N yang menyatakan banyaknya data buku yang ada di dalam perpustakaan. N baris berikutnya, masing-masingnya adalah data buku sesuai dengan atribut atau field pada struct. Baris terakhir adalah bilangan bulat yang menyatakan rating buku yang akan dicari.
+
+Keluaran terdiri dari beberapa baris. Baris pertama adalah data buku terfavorit, baris kedua adalah lima judul buku dengan rating tertinggi, selanjutnya baris terakhir adalah data buku. yang dicari sesual rating yang diberikan pada masukan baris terakhir.
+
+### Source Code
+![carbon (15)](https://github.com/user-attachments/assets/558fce90-93d6-4850-ab55-790c4a044db8)
+
+### Screenshot Output
+![image](https://github.com/user-attachments/assets/43d0bae0-5025-4863-81f0-7af897ec88a1)
+
+### Deskripsi Program
+Program ini adalah sistem pengelolaan data buku untuk perpustakaan. Program membaca data sejumlah buku, menampilkan buku dengan rating tertinggi, lima buku dengan rating tertinggi, serta mencari buku berdasarkan rating tertentu. Data buku diurutkan berdasarkan rating secara menurun untuk mempermudah pencarian dan penampilan hasil.
+
+**Algoritma Program**
+
+1. **Input Data Buku:**
+   - Masukkan jumlah buku (**N**).
+   - Masukkan data buku berupa ID, judul, penulis, penerbit, jumlah eksemplar, tahun, dan rating untuk setiap buku.
+
+2. **Menentukan Buku Terfavorit:**
+   - Iterasi seluruh data buku untuk menemukan buku dengan rating tertinggi.
+
+3. **Mengurutkan Buku Berdasarkan Rating:**
+   - Gunakan algoritma **insertion sort** untuk mengurutkan buku dari rating tertinggi ke terendah.
+
+4. **Menampilkan Lima Buku Rating Tertinggi:**
+   - Cetak judul dari lima buku pertama pada daftar yang telah diurutkan (atau kurang dari lima jika data kurang dari lima buku).
+
+5. **Mencari Buku Berdasarkan Rating:**
+   - Gunakan metode **binary search** pada data yang telah diurutkan untuk mencari buku dengan rating tertentu.
+   - Jika ditemukan, tampilkan informasi buku tersebut, jika tidak, tampilkan pesan bahwa buku tidak ditemukan.
+
+**Cara Kerja Program**
+
+1. Program dimulai dengan meminta masukan jumlah buku dan data buku.
+2. Data buku diolah untuk menemukan buku dengan rating tertinggi.
+3. Data buku diurutkan menggunakan **insertion sort** untuk memudahkan pengolahan lebih lanjut.
+4. Setelah pengurutan:
+   - Buku dengan lima rating tertinggi ditampilkan.
+   - Pencarian buku dengan rating tertentu dilakukan menggunakan **binary search**.
+5. Hasil pencarian, buku terfavorit, dan daftar lima buku terbaik ditampilkan.
+
+
 
