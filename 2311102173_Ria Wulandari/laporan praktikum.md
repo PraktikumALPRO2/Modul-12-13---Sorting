@@ -152,6 +152,7 @@ func main(){
 #### Output
 ![image](https://github.com/user-attachments/assets/9f4d15a2-d780-4e22-b8e4-1482d7a66511)
 #### Deskripsi program
+Program ini digunakan untuk mengurutkan nomor rumah kerabat di beberapa daerah menggunakan metode selection sort. Pengguna diminta memasukkan jumlah daerah yang akan diproses, diikuti dengan jumlah nomor rumah dan nomor rumah itu sendiri untuk setiap daerah. Setelah semua data dimasukkan, program mengurutkan nomor rumah dari terkecil ke terbesar dengan mencari elemen terkecil secara bertahap dan menukarnya ke posisi yang sesuai. Hasil pengurutan ditampilkan untuk setiap daerah setelah proses selesai.
 
 ### 2. Buatlah sebuah program yang digunakan untuk membaca data Integer seperti contoh yang diberikan di bawah ini, kemudian diurutkan (menggunakan metoda insertion sort), dan memeriksa apakah data yang terurut berjarak sama terhadap data sebelumnya.
 Masukan terdiri dari sekumpulan bilangan bulat yang diakhiri oleh bilangan negatif. Hanya bilangan non negatif saja yang disimpan ke dalam array.
@@ -236,6 +237,7 @@ func main() {
 ![image](https://github.com/user-attachments/assets/af7b9dd5-ab71-420e-b8a2-163dcc147e8a)
 
 #### Deskripsi program
+Program ini bertujuan untuk mengurutkan sekumpulan bilangan menggunakan metode Insertion Sort dan memeriksa apakah setiap elemen dalam array memiliki selisih yang tetap setelah diurutkan. Pengguna dapat memasukkan bilangan bulat secara berurutan hingga bilangan negatif dimasukkan sebagai penanda akhir input. Setelah proses pengurutan, program akan mengevaluasi selisih antar elemen dalam array dan menentukan apakah selisih tersebut konstan di seluruh elemen. Hasil akhirnya berupa array yang telah diurutkan serta informasi mengenai status keseragaman selisih antar elemen.
 
 ## Unguided
 ### 1. Belakangan diketahui ternyata Hercules itu tidak berani menyeberang jalan, maka selalu diusahakan agar hanya menyeberang jalan sesedikit mungkin, hanya diujung jalan. Karena nomor rumah sisi kiri jalan selalu ganjil dan sisi kanan jalan selalu genap, maka buatlah program kerabat dekat yang akan menampilkan nomor rumah mulai dari nomor yang ganjil lebih dulu terurut membesar dan kemudian menampilkan nomor rumah dengan nomor genap terurut mengecil.
@@ -546,4 +548,4 @@ func main() {
 ![image](https://github.com/user-attachments/assets/9d944b04-7973-4f6e-bd66-2a4656f5b226)
 
 #### Deskripsi program
-Program ini merupakan aplikasi berbasis teks yang digunakan untuk mendata koleksi buku dan menampilkan buku dengan rating tertinggi. Setiap buku memiliki atribut berupa ID, judul, penulis, penerbit, jumlah eksemplar, tahun terbit, dan rating. Program memvalidasi input pengguna, khususnya pada atribut rating yang harus berada dalam rentang 0 hingga 10. Setelah pengguna memasukkan jumlah buku dan detailnya satu per satu, program akan mencetak buku dengan rating tertinggi sebagai buku terfavorit. Input dibaca menggunakan bufio.Reader untuk menghindari konflik antara input angka dan string, serta memastikan data yang dimasukkan bersih dan sesuai format.
+Program ini bertujuan untuk mendata koleksi buku dan menampilkan buku dengan rating tertinggi berdasarkan input pengguna. Data yang dimasukkan meliputi ID, judul, penulis, penerbit, jumlah eksemplar, tahun terbit, dan rating. Setiap input diproses menggunakan fungsi khusus untuk memastikan data sesuai dengan jenisnya, termasuk validasi rating agar berada dalam rentang 0 hingga 10. Setelah semua data dimasukkan, program akan mencari dan mencetak buku dengan rating tertinggi. Proses input dan output dirancang agar mudah dipahami dan digunakan oleh pengguna.
