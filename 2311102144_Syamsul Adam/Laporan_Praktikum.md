@@ -1,12 +1,12 @@
 # <h2 align="center">LAPORAN PRAKTIKUM</h2>
 # <h2 align="center">ALGORITMA DAN PEMROGRAMAN 2</h2>
 # <h2 align="center">MODUL 12-13</h2>
-# <h2 align="center">PENGURUTAN DATA</h2>
+# <h2 align="center">SORTING</h2>
 <p align="center">
     <img src="https://github.com/user-attachments/assets/3ccfed0b-72d1-4349-ac08-c4dce379c827" alt="Gambar">
 </p>
  <h3  align="center" >Disusun Oleh : </h3>
-<p align="center">Amanda Windhu Gustyas - 2311102121</p>
+<p align="center">Syamsul Adam - 2311102144</p>
 <p align="center">IF-11-05</p>
  <h3 <p align="center" >Dosen Pengampu : </h3> </p>
  <p align="center">Arif Amrulloh, S.Kom., M.Kom.</p>
@@ -114,11 +114,12 @@ func main() {
 	}
 }
 ```
-## Output:<br/> ![image](https://github.com/user-attachments/assets/dcad3bc1-ba98-42bf-a86b-583599c6bb07)
+## Output:![Screenshot 2024-12-01 224400](https://github.com/user-attachments/assets/abc428e0-25db-4ccd-86a1-e81471b07c39)
 
-Program di atas adalah implementasi algoritma Selection Sort dalam bahasa Go, yang digunakan untuk mengurutkan bilangan dalam urutan ascending. Program diawali dengan membaca input jumlah kasus (n) dan memvalidasi agar nilainya berada dalam rentang 1 hingga 999. Setiap kasus kemudian meminta jumlah elemen dalam array (m), yang juga divalidasi agar berada dalam rentang 1 hingga 999999.
+Program ini berfungsi untuk mengurutkan sejumlah array (daftar angka) dalam urutan menaik menggunakan algoritma Selection Sort. 
+Program menerima input berupa jumlah array dan elemen-elemen setiap array, kemudian mencetak hasil pengurutan masing-masing array.
 
-Setelah menerima jumlah elemen, program membaca elemen-elemen array, mengurutkannya menggunakan algoritma Selection Sort, lalu mencetak hasil array yang telah terurut. Proses pengurutan dilakukan dengan mencari elemen terkecil pada sisa array yang belum terurut, lalu menukarnya dengan elemen di posisi iterasi saat ini. Hasil akhirnya adalah semua elemen pada array diurutkan dengan benar untuk setiap kasus, dan outputnya ditampilkan dalam satu baris untuk setiap kasus.
+
 
 ### 2. Buatlah sebuah program yang digunakan untuk membaca data integer seperti contoh yang diberikan di bawah ini, kemudian diurutkan (menggunakan metode insertion sort), dan memeriksa apakah data yang terurut berjarak sama terhadap data sebelumnya.<br/> Masukan: terdiri dari sekumpulan bilangan bulat yang diakhiri oleh bilangan negatif. Hanya bilangan non-negatif saja yang disimpan ke dalam array.<br/> Keluaran: terdiri dari dua baris. Baris pertama adalah isi dari array setelah dilakukan pengurutan, sedangkan baris kedua adalah status jarak setiap bilangan yang ada di dalam array, "Data berjarak x" atau "data berjarak tidak tetap".<br/> Contoh masukan dan keluaran<br/>
 ![image](https://github.com/user-attachments/assets/6f12f4a5-24e3-4053-b700-3eef22375cc9)
@@ -188,9 +189,10 @@ func main() {
 	fmt.Println(result)
 }
 ```
-## Output:<br/> ![image](https://github.com/user-attachments/assets/f16d6998-8101-440a-88f7-95a65100ea55)
+## Output:![Screenshot 2024-12-01 224057](https://github.com/user-attachments/assets/51b24bb2-4a15-4efd-ab75-d7cd2a8359f0)
 
-Program di atas membaca bilangan bulat hingga ditemukan bilangan negatif, mengurutkan bilangan tersebut dengan algoritma insertion sort, lalu memeriksa apakah jarak antar elemen di array yang sudah diurutkan konsisten. Hasil akhirnya menampilkan array yang sudah diurutkan dan status jaraknya.
+
+Program ini dirancang untuk menerima sejumlah bilangan bulat positif, mengurutkan data dalam urutan menaik menggunakan algoritma Sort Insertion, dan kemudian memeriksa apakah jarak antar elemen tetap. Ketika pengguna memasukkan bilangan negatif, program berakhir.
 
 ## III. UNGUIDED 
 
@@ -204,67 +206,78 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-// Fungsi untuk melakukan selection sort
-func selectionSort(arr []int, ascending bool) {
-	n := len(arr)
-	for i := 0; i < n-1; i++ {
-		minIndex := i
-		for j := i + 1; j < n; j++ {
-			if ascending && arr[j] < arr[minIndex] {
-				minIndex = j
-			} else if !ascending && arr[j] > arr[minIndex] {
-				minIndex = j
-			}
+// Fungsi untuk memisahkan dan mengurutkan nomor ganjil dan genap
+func prosesNomorRumah(nomorRumah []int) ([]int, []int) {
+	// Slice untuk ganjil dan genap
+	ganjil := []int{}
+	genap := []int{}
+
+	// Memisahkan ganjil dan genap
+	for _, nomor := range nomorRumah {
+		if nomor%2 == 0 {
+			genap = append(genap, nomor)
+		} else {
+			ganjil = append(ganjil, nomor)
 		}
-		// Tukar elemen
-		arr[i], arr[minIndex] = arr[minIndex], arr[i]
 	}
+
+	// Mengurutkan nomor rumah
+	sort.Sort(sort.Reverse(sort.IntSlice(ganjil))) // Ganjil diurutkan menurun
+	sort.Ints(genap)                              // Genap diurutkan menaik
+
+	return ganjil, genap
+}
+
+func cetakNomorRumah(wilayah int, ganjil []int, genap []int) {
+	fmt.Printf("\nNomor rumah terurut wilayah %d:\n", wilayah)
+	fmt.Print("Ganjil: ")
+	for _, nomor := range ganjil {
+		fmt.Printf("%d ", nomor)
+	}
+	fmt.Print("\nGenap: ")
+	for _, nomor := range genap {
+		fmt.Printf("%d ", nomor)
+	}
+	fmt.Println()
 }
 
 func main() {
-	var n, num int
+	var totalWilayah int
 
-	fmt.Print("Masukkan jumlah daerah: ")
-	fmt.Scan(&n)
+	// Input jumlah wilayah
+	fmt.Print("Masukkan jumlah wilayah: ")
+	fmt.Scanln(&totalWilayah)
 
-	for i := 0; i < n; i++ {
-		fmt.Printf("Masukkan bilangan untuk daerah %d (akhiri dengan bilangan negatif):\n", i+1)
-		var oddNumbers, evenNumbers []int
+	// Memproses setiap wilayah
+	for wilayah := 1; wilayah <= totalWilayah; wilayah++ {
+		var totalRumah int
 
-		// Input bilangan hingga ditemukan bilangan negatif
-		for {
-			fmt.Scan(&num)
-			if num < 0 {
-				break
-			}
-			if num%2 == 0 {
-				evenNumbers = append(evenNumbers, num)
-			} else {
-				oddNumbers = append(oddNumbers, num)
-			}
+		fmt.Printf("\nJumlah rumah di wilayah %d: ", wilayah)
+		fmt.Scanln(&totalRumah)
+
+		// Membuat slice untuk menyimpan nomor rumah
+		nomorRumah := make([]int, totalRumah)
+		fmt.Printf("Masukkan %d nomor rumah (pisahkan dengan spasi): ", totalRumah)
+		for i := 0; i < totalRumah; i++ {
+			fmt.Scan(&nomorRumah[i])
 		}
 
-		// Urutkan ganjil secara ascending dan genap secara descending
-		selectionSort(oddNumbers, true)
-		selectionSort(evenNumbers, false)
+		// Memproses pengelompokan dan pengurutan
+		ganjil, genap := prosesNomorRumah(nomorRumah)
 
-		// Cetak hasil
-		fmt.Printf("Hasil untuk daerah %d:\n", i+1)
-		for _, val := range oddNumbers {
-			fmt.Print(val, " ")
-		}
-		for _, val := range evenNumbers {
-			fmt.Print(val, " ")
-		}
-		fmt.Println()
+		// Menampilkan hasil
+		cetakNomorRumah(wilayah, ganjil, genap)
 	}
 }
-```
-## Output:<br/> ![image](https://github.com/user-attachments/assets/d8d6113c-87c2-4582-95a4-74dbed59165b)
 
-Program di atas dibuat untuk membaca input bilangan dari beberapa daerah, memisahkan bilangan ganjil dan genap, lalu mengurutkannya sebelum mencetak hasilnya. Program meminta pengguna memasukkan jumlah daerah dan kemudian untuk setiap daerah, pengguna memasukkan bilangan satu per satu hingga bilangan negatif dimasukkan, yang menandakan akhir input. Bilangan ganjil dan genap dipisahkan ke dalam array terpisah. Program kemudian mengurutkan bilangan ganjil secara menaik dan bilangan genap secara menurun menggunakan algoritma selection sort. Setelah proses pengurutan selesai, program mencetak bilangan ganjil diikuti dengan bilangan genap dalam urutan yang telah diatur.
+```
+## Output:![Screenshot 2024-12-01 220642](https://github.com/user-attachments/assets/6faabafe-bf5f-446d-8630-9b7cc900a93b)
+
+Program ini memisahkan dan mengurutkan nomor rumah berdasarkan jenisnya (ganjil atau genap) untuk beberapa wilayah. Hasilnya adalah nomor rumah ganjil yang diurutkan dari besar ke kecil dan nomor rumah genap yang diurutkan secara dari kecil ke besar.
+
 
 ### 2. Kompetisi pemrograman yang baru saja berlalu diikuti oleh 17 tim dari berbagai perguruan tinggi ternama. Dalam kompetisi tersebut, setiap tim berlomba untuk menyelesaikan sebanyak mungkin problem yang diberikan. Dari 13 problem yang diberikan, ada satu problem yang menarik. Problem tersebut mudah dipahami, hampir semua tim mencoba untuk menyelesaikannya, tetapi hanya 3 tim yang berhasil. Apa sih problemanya?<br/>
 ### "Median adalah nilai tengah dari suatu koleksi data yang sudah terurut. Jika jumlah data genap, maka nilai median adalah rata-rata dari kedua nilai tengahnya. Pada problem ini, semua data merupakan bilangan bulat positif, dan karenanya rata-rata nilai tengah dibulatkan ke bawah."<br/>
@@ -279,78 +292,57 @@ Program di atas dibuat untuk membaca input bilangan dari beberapa daerah, memisa
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+	"sort"
 )
 
+// Fungsi untuk menghitung median dari array yang sudah terurut
+func cariMedian(data []int) float64 {
+	n := len(data)
+	if n == 0 {
+		return 0
+	}
+	// Jika jumlah elemen ganjil
+	if n%2 != 0 {
+		return float64(data[n/2])
+	}
+	// Jika jumlah elemen genap
+	tengah := n / 2
+	return float64(data[tengah-1]+data[tengah]) / 2.0
+}
+
 func main() {
-	var data []int // Menyimpan data yang sudah terbaca
-	
-	// Membaca input dari stdin
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input := scanner.Text()
-		num, err := strconv.Atoi(input)
-		if err != nil {
-			fmt.Println("Input tidak valid")
-			continue
-		}
+	var angka int
+	var nilai []int
+	fmt.Println("Masukkan angka:")
 
-		// Jika angka -5313 ditemukan, hentikan program
-		if num == -5313 {
+	for {
+		fmt.Scan(&angka)
+
+		if angka == 0 {
+			if len(nilai) > 0 {
+				// Urutkan data menggunakan library `sort`
+				sort.Ints(nilai)
+				// Hitung median
+				median := cariMedian(nilai)
+				fmt.Printf("%.0f\n", median)
+			}
+		} else if angka == -5313 {
+			// Keluar dari program
 			break
-		}
-
-		// Jika angka 0 ditemukan, hitung dan cetak median
-		if num == 0 {
-			if len(data) == 0 {
-				fmt.Println("Tidak ada data untuk menghitung median")
-				continue
-			}
-
-			selectionSort(data) // Mengurutkan data menggunakan selection sort
-			median := calculateMedian(data)
-			fmt.Printf("Mediannya adalah %d\n", median)
 		} else {
-			// Menambahkan data baru ke array
-			data = append(data, num)
+			// Tambahkan angka ke daftar nilai
+			nilai = append(nilai, angka)
 		}
 	}
 }
 
-// Fungsi untuk menghitung median
-func calculateMedian(arr []int) int {
-	length := len(arr)
-	if length%2 == 1 {
-		// Jika jumlah data ganjil, ambil nilai tengah
-		return arr[length/2]
-	} else {
-		// Jika jumlah data genap, ambil rata-rata dua nilai tengah dan bulatkan ke bawah
-		sum := arr[length/2-1] + arr[length/2]
-		return sum / 2
-	}
-}
-
-// Fungsi untuk mengurutkan array menggunakan selection sort
-func selectionSort(arr []int) {
-	n := len(arr)
-	for i := 0; i < n-1; i++ {
-		minIdx := i
-		for j := i + 1; j < n; j++ {
-			if arr[j] < arr[minIdx] {
-				minIdx = j
-			}
-		}
-		// Tukar elemen minimum dengan elemen pertama
-		arr[i], arr[minIdx] = arr[minIdx], arr[i]
-	}
-}
 ```
-## Output:<br/> ![image](https://github.com/user-attachments/assets/a07dc677-be20-4bfc-9264-02586750fc5c)
+## Output:![Screenshot 2024-12-01 205030](https://github.com/user-attachments/assets/69bf7873-84df-492c-84df-7878fc2a2d20)
 
-Program ini menghitung median dari serangkaian bilangan bulat positif yang diberikan sebagai input. Median adalah nilai tengah dari data yang telah diurutkan. Jika jumlah data ganjil, median adalah elemen tengah, sedangkan jika jumlah data genap, median dihitung sebagai rata-rata dari dua elemen tengah yang dibulatkan ke bawah. Program membaca input secara berurutan, menyimpan bilangan yang valid ke dalam array. Setiap kali angka 0 ditemukan, program mengurutkan data yang telah terkumpul menggunakan algoritma selection sort, lalu menghitung dan mencetak median. Ketika angka -5313 ditemukan, program berhenti memproses input.
+
+Program ini berfungsi untuk menghitung median dari sekumpulan data yang diinputkan oleh pengguna. Program berjalan secara langsung, menerima data hingga perintah khusus diberikan, lalu mencetak hasil median dari data angka-angka yang telah dimasukkan.
+
 
 ### 3. Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
 ![image](https://github.com/user-attachments/assets/2734f8f6-83de-48d1-a546-507f0e97096b)<br/>
@@ -365,95 +357,129 @@ import (
 	"sort"
 )
 
+// Konstanta untuk ukuran maksimum array
+const nMax = 7919
+
+// Struktur data untuk Buku
 type Buku struct {
-	ID        string
+	ID        int
 	Judul     string
 	Penulis   string
 	Penerbit  string
-	Eksemplar int
 	Tahun     int
 	Rating    int
 }
 
-type DaftarBuku []Buku
+// Tipe data untuk daftar buku
+type DaftarBuku [nMax]Buku
 
-func DaftarkanBuku(pustaka *DaftarBuku, n int) {
-	for i := 0; i < n; i++ {
-		var buku Buku
-		fmt.Scan(&buku.ID, &buku.Judul, &buku.Penulis, &buku.Penerbit, &buku.Eksemplar, &buku.Tahun, &buku.Rating)
-		*pustaka = append(*pustaka, buku)
+// Fungsi utama
+func main() {
+	var pustaka DaftarBuku
+	var nPustaka int
+	var ratingCari int
+
+	// Input jumlah buku
+	fmt.Print("Masukkan jumlah buku (N): ")
+	fmt.Scanln(&nPustaka)
+
+	// Input data buku
+	for i := 0; i < nPustaka; i++ {
+		fmt.Printf("Masukkan data buku ke-%d:\n", i+1)
+		fmt.Printf("ID: ")
+		fmt.Scanln(&pustaka[i].ID)
+		fmt.Printf("Judul: ")
+		fmt.Scanln(&pustaka[i].Judul)
+		fmt.Printf("Penulis: ")
+		fmt.Scanln(&pustaka[i].Penulis)
+		fmt.Printf("Penerbit: ")
+		fmt.Scanln(&pustaka[i].Penerbit)
+		fmt.Printf("Tahun: ")
+		fmt.Scanln(&pustaka[i].Tahun)
+		fmt.Printf("Rating: ")
+		fmt.Scanln(&pustaka[i].Rating)
 	}
+
+	// Input rating yang akan dicari
+	fmt.Print("Masukkan rating yang dicari: ")
+	fmt.Scanln(&ratingCari)
+
+	// Cetak buku terfavorit
+	cetakTerfavorit(pustaka, nPustaka)
+
+	// Cetak buku berdasarkan rating tertinggi
+	cetakUrutanRating(pustaka, nPustaka)
+
+	// Cari buku berdasarkan rating
+	cariBuku(pustaka, nPustaka, ratingCari)
 }
 
-func CetakTerfavorit(pustaka DaftarBuku) {
-	if len(pustaka) == 0 {
+// Fungsi untuk mencetak buku terfavorit
+func cetakTerfavorit(pustaka DaftarBuku, n int) {
+	if n == 0 {
 		fmt.Println("Tidak ada data buku.")
 		return
 	}
+
 	terfavorit := pustaka[0]
-	for _, buku := range pustaka {
-		if buku.Rating > terfavorit.Rating {
-			terfavorit = buku
+	for i := 1; i < n; i++ {
+		if pustaka[i].Rating > terfavorit.Rating {
+			terfavorit = pustaka[i]
 		}
 	}
-	fmt.Println(terfavorit.Judul, terfavorit.Penulis, terfavorit.Penerbit, terfavorit.Tahun)
+
+	fmt.Println("\nBuku Terfavorit:")
+	fmt.Printf("Judul: %s, Penulis: %s, Penerbit: %s, Tahun: %d, Rating: %d\n",terfavorit.Judul, terfavorit.Penulis, terfavorit.Penerbit, terfavorit.Tahun, terfavorit.Rating)
 }
 
-func UrutBuku(pustaka *DaftarBuku) {
-	sort.Slice(*pustaka, func(i, j int) bool {
-		return (*pustaka)[i].Rating > (*pustaka)[j].Rating
+// Fungsi untuk mencetak buku berdasarkan urutan rating tertinggi
+func cetakUrutanRating(pustaka DaftarBuku, n int) {
+	if n == 0 {
+		fmt.Println("Tidak ada data buku.")
+		return
+	}
+
+	// Salin data ke slice untuk diurutkan
+	bukuSlice := pustaka[:n]
+
+	// Urutkan berdasarkan rating (descending)
+	sort.Slice(bukuSlice, func(i, j int) bool {
+		return bukuSlice[i].Rating > bukuSlice[j].Rating
 	})
-}
 
-func Cetak5Terbaru(pustaka DaftarBuku) {
-	limit := 5
-	if len(pustaka) < limit {
-		limit = len(pustaka)
-	}
-	for i := 0; i < limit; i++ {
-		fmt.Println(pustaka[i].Judul, pustaka[i].Rating)
+	fmt.Println("\nBuku Berdasarkan Rating Tertinggi:")
+	for i, buku := range bukuSlice {
+		fmt.Printf("%d. Judul: %s, Penulis: %s, Penerbit: %s, Tahun: %d, Rating: %d\n",
+			i+1, buku.Judul, buku.Penulis, buku.Penerbit, buku.Tahun, buku.Rating)
 	}
 }
 
-func CariBuku(pustaka DaftarBuku, rating int) {
-	low, high := 0, len(pustaka)-1
-	for low <= high {
-		mid := (low + high) / 2
-		if pustaka[mid].Rating == rating {
-			fmt.Println(pustaka[mid].Judul, pustaka[mid].Penulis, pustaka[mid].Penerbit, pustaka[mid].Tahun, pustaka[mid].Rating)
-			return
-		} else if pustaka[mid].Rating < rating {
-			high = mid - 1
-		} else {
-			low = mid + 1
+// Fungsi untuk mencari buku berdasarkan rating tertentu
+func cariBuku(pustaka DaftarBuku, n int, rating int) {
+	if n == 0 {
+		fmt.Println("Tidak ada data buku.")
+		return
+	}
+
+	fmt.Printf("\nMencari buku dengan rating %d:\n", rating)
+	found := false
+	for _, buku := range pustaka[:n] {
+		if buku.Rating == rating {
+			fmt.Printf("Judul: %s, Penulis: %s, Penerbit: %s, Tahun: %d, Rating: %d\n",
+				buku.Judul, buku.Penulis, buku.Penerbit, buku.Tahun, buku.Rating)
+			found = true
 		}
 	}
-	fmt.Println("Tidak ada buku dengan rating seperti itu.")
+
+	if !found {
+		fmt.Println("Tidak ada buku dengan rating tersebut.")
+	}
 }
 
-func main() {
-	var n int
-	fmt.Scan(&n)
-
-	var pustaka DaftarBuku
-	DaftarkanBuku(&pustaka, n)
-
-	CetakTerfavorit(pustaka)
-
-	UrutBuku(&pustaka)
-
-	Cetak5Terbaru(pustaka)
-
-	var cariRating int
-	fmt.Scan(&cariRating)
-	CariBuku(pustaka, cariRating)
-}
 ```
-## Output:<br/> ![image](https://github.com/user-attachments/assets/2d31ed02-9a46-462a-8716-430e3f10497f)
+## Output:![Screenshot 2024-12-01 202903](https://github.com/user-attachments/assets/e551984f-6030-450e-bd78-bc8227d23a2b)
 
-Program di atas adalah aplikasi sederhana untuk mengelola data buku perpustakaan. Fitur utama meliputi DaftarkanBuku untuk memasukkan data buku, CetakTerfavorit untuk menampilkan buku dengan rating tertinggi, dan UrutBuku untuk mengurutkan buku berdasarkan rating secara menurun. Selain itu, program dapat menampilkan 5 buku dengan rating tertinggi melalui Cetak5Terbaru, serta mencari buku berdasarkan rating tertentu menggunakan pencarian biner dengan fitur CariBuku. 
 
+Program ini mengelola data perpustakaan dengan fitur pencarian, pengurutan, dan pencetakan data buku berdasarkan rating. Program menggunakan array statis DaftarBuku untuk menyimpan informasi buku seperti ID, judul, penulis, penerbit, tahun, dan rating
 ## KESIMPULAN
-Setelah mempelajari algoritma Selection Sort dan Insertion Sort, dapat disimpulkan bahwa kedua algoritma ini adalah metode dasar dalam pengurutan data yang efektif untuk dataset kecil. Algoritma Selection Sort bekerja dengan mencari nilai ekstrem (terkecil atau terbesar) dalam rentang data yang belum terurut, lalu menempatkannya di posisi yang benar melalui proses pencarian indeks nilai ekstrem dan pertukaran nilai (swap). Sementara itu, algoritma Insertion Sort menyusun data dengan cara menyisipkan elemen ke posisi yang tepat dalam kumpulan data yang telah terurut sebelumnya, menggunakan pencarian posisi secara sekuensial dan penyisipan elemen.
-
-Selection Sort memiliki keunggulan dalam kemudahan implementasi dan jumlah pertukaran nilai yang lebih sedikit, tetapi kurang efisien untuk dataset besar karena memiliki kompleksitas waktu sebesar O(n²). Di sisi lain, Insertion Sort lebih efisien untuk dataset kecil atau yang hampir terurut karena prosesnya dapat mengurangi jumlah operasi pergeseran. Namun, seperti Selection Sort, Insertion Sort juga tidak cocok untuk dataset besar karena kompleksitas waktu yang sama. Secara keseluruhan, kedua algoritma ini memberikan dasar yang baik dalam memahami pengurutan.
+Semua program dirancang untuk menyelesaikan tugas-tugas spesifik terkait manipulasi data, seperti pengurutan, pengelompokan, analisis, atau pencarian. Mereka menunjukkan pentingnya algoritma, logika, dan struktur program yang baik untuk menghasilkan solusi yang efisien dan mudah digunakan.
