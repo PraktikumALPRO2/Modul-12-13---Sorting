@@ -116,6 +116,9 @@ func main() {
 ```
 ## Output:<br/> ![image](https://github.com/user-attachments/assets/dcad3bc1-ba98-42bf-a86b-583599c6bb07)
 
+Program di atas adalah implementasi algoritma Selection Sort dalam bahasa Go, yang digunakan untuk mengurutkan bilangan dalam urutan ascending. Program diawali dengan membaca input jumlah kasus (n) dan memvalidasi agar nilainya berada dalam rentang 1 hingga 999. Setiap kasus kemudian meminta jumlah elemen dalam array (m), yang juga divalidasi agar berada dalam rentang 1 hingga 999999.
+
+Setelah menerima jumlah elemen, program membaca elemen-elemen array, mengurutkannya menggunakan algoritma Selection Sort, lalu mencetak hasil array yang telah terurut. Proses pengurutan dilakukan dengan mencari elemen terkecil pada sisa array yang belum terurut, lalu menukarnya dengan elemen di posisi iterasi saat ini. Hasil akhirnya adalah semua elemen pada array diurutkan dengan benar untuk setiap kasus, dan outputnya ditampilkan dalam satu baris untuk setiap kasus.
 
 ### 2. Buatlah sebuah program yang digunakan untuk membaca data integer seperti contoh yang diberikan di bawah ini, kemudian diurutkan (menggunakan metode insertion sort), dan memeriksa apakah data yang terurut berjarak sama terhadap data sebelumnya.<br/> Masukan: terdiri dari sekumpulan bilangan bulat yang diakhiri oleh bilangan negatif. Hanya bilangan non-negatif saja yang disimpan ke dalam array.<br/> Keluaran: terdiri dari dua baris. Baris pertama adalah isi dari array setelah dilakukan pengurutan, sedangkan baris kedua adalah status jarak setiap bilangan yang ada di dalam array, "Data berjarak x" atau "data berjarak tidak tetap".<br/> Contoh masukan dan keluaran<br/>
 ![image](https://github.com/user-attachments/assets/6f12f4a5-24e3-4053-b700-3eef22375cc9)
@@ -355,11 +358,98 @@ Program ini menghitung median dari serangkaian bilangan bulat positif yang diber
 ### Keluaran: terdiri dari beberapa baris. Baris pertama adalah data buku terfavorit, baris kedua adalah lima judul buku dengan rating tertinggi, selanjutnya baris terakhir adalah data buku yang dicari sesuai rating yang diberikan pada masukan baris terakhir.<br/>
 
 ```go
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+type Buku struct {
+	ID        string
+	Judul     string
+	Penulis   string
+	Penerbit  string
+	Eksemplar int
+	Tahun     int
+	Rating    int
+}
+
+type DaftarBuku []Buku
+
+func DaftarkanBuku(pustaka *DaftarBuku, n int) {
+	for i := 0; i < n; i++ {
+		var buku Buku
+		fmt.Scan(&buku.ID, &buku.Judul, &buku.Penulis, &buku.Penerbit, &buku.Eksemplar, &buku.Tahun, &buku.Rating)
+		*pustaka = append(*pustaka, buku)
+	}
+}
+
+func CetakTerfavorit(pustaka DaftarBuku) {
+	if len(pustaka) == 0 {
+		fmt.Println("Tidak ada data buku.")
+		return
+	}
+	terfavorit := pustaka[0]
+	for _, buku := range pustaka {
+		if buku.Rating > terfavorit.Rating {
+			terfavorit = buku
+		}
+	}
+	fmt.Println(terfavorit.Judul, terfavorit.Penulis, terfavorit.Penerbit, terfavorit.Tahun)
+}
+
+func UrutBuku(pustaka *DaftarBuku) {
+	sort.Slice(*pustaka, func(i, j int) bool {
+		return (*pustaka)[i].Rating > (*pustaka)[j].Rating
+	})
+}
+
+func Cetak5Terbaru(pustaka DaftarBuku) {
+	limit := 5
+	if len(pustaka) < limit {
+		limit = len(pustaka)
+	}
+	for i := 0; i < limit; i++ {
+		fmt.Println(pustaka[i].Judul, pustaka[i].Rating)
+	}
+}
+
+func CariBuku(pustaka DaftarBuku, rating int) {
+	low, high := 0, len(pustaka)-1
+	for low <= high {
+		mid := (low + high) / 2
+		if pustaka[mid].Rating == rating {
+			fmt.Println(pustaka[mid].Judul, pustaka[mid].Penulis, pustaka[mid].Penerbit, pustaka[mid].Tahun, pustaka[mid].Rating)
+			return
+		} else if pustaka[mid].Rating < rating {
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+	fmt.Println("Tidak ada buku dengan rating seperti itu.")
+}
+
+func main() {
+	var n int
+	fmt.Scan(&n)
+
+	var pustaka DaftarBuku
+	DaftarkanBuku(&pustaka, n)
+
+	CetakTerfavorit(pustaka)
+
+	UrutBuku(&pustaka)
+
+	Cetak5Terbaru(pustaka)
+
+	var cariRating int
+	fmt.Scan(&cariRating)
+	CariBuku(pustaka, cariRating)
+}
 ```
+## Output:<br/> ![image](https://github.com/user-attachments/assets/2d31ed02-9a46-462a-8716-430e3f10497f)
 
-
- 
-
-
-
+Program di atas adalah aplikasi sederhana untuk mengelola data buku perpustakaan. Fitur utama meliputi DaftarkanBuku untuk memasukkan data buku, CetakTerfavorit untuk menampilkan buku dengan rating tertinggi, dan UrutBuku untuk mengurutkan buku berdasarkan rating secara menurun. Selain itu, program dapat menampilkan 5 buku dengan rating tertinggi melalui Cetak5Terbaru, serta mencari buku berdasarkan rating tertentu menggunakan pencarian biner dengan fitur CariBuku. 
 
