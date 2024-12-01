@@ -114,13 +114,156 @@ func main() {
 	}
 }
 ```
-## Output: ![image](https://github.com/user-attachments/assets/dcad3bc1-ba98-42bf-a86b-583599c6bb07)
+## Output:<br/> ![image](https://github.com/user-attachments/assets/dcad3bc1-ba98-42bf-a86b-583599c6bb07)
 
+
+### 2. Buatlah sebuah program yang digunakan untuk membaca data integer seperti contoh yang diberikan di bawah ini, kemudian diurutkan (menggunakan metode insertion sort), dan memeriksa apakah data yang terurut berjarak sama terhadap data sebelumnya.<br/> Masukan: terdiri dari sekumpulan bilangan bulat yang diakhiri oleh bilangan negatif. Hanya bilangan non-negatif saja yang disimpan ke dalam array.<br/> Keluaran: terdiri dari dua baris. Baris pertama adalah isi dari array setelah dilakukan pengurutan, sedangkan baris kedua adalah status jarak setiap bilangan yang ada di dalam array, "Data berjarak x" atau "data berjarak tidak tetap".<br/> Contoh masukan dan keluaran<br/>
+![image](https://github.com/user-attachments/assets/6f12f4a5-24e3-4053-b700-3eef22375cc9)
+
+```go
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+// Fungsi untuk melakukan insertion sort
+func insertionSort(arr []int) {
+	for i := 1; i < len(arr); i++ {
+		key := arr[i]
+		j := i - 1
+		for j >= 0 && arr[j] > key {
+			arr[j+1] = arr[j]
+			j--
+		}
+		arr[j+1] = key
+	}
+}
+
+// Fungsi untuk memeriksa apakah data memiliki jarak tetap
+func checkEqualSpacing(arr []int) string {
+	if len(arr) < 2 {
+		return "Data berjarak tidak tetap"
+	}
+
+	// Hitung jarak awal
+	diff := int(math.Abs(float64(arr[1] - arr[0])))
+	
+	// Periksa jarak setiap elemen
+	for i := 2; i < len(arr); i++ {
+		if int(math.Abs(float64(arr[i]-arr[i-1]))) != diff {
+			return "Data berjarak tidak tetap"
+		}
+	}
+	return fmt.Sprintf("Data berjarak %d", diff)
+}
+
+func main() {
+	var input []int
+	var num int
+
+	fmt.Println("Masukkan bilangan bulat:")
+
+	// Input bilangan hingga ditemukan bilangan negatif
+	for {
+		fmt.Scan(&num)
+		if num < 0 {
+			break
+		}
+		input = append(input, num)
+	}
+
+	// Lakukan sorting pada array
+	insertionSort(input)
+
+	// Cetak array yang telah diurutkan
+	fmt.Println("Array setelah diurutkan:", input)
+
+	// Periksa apakah data memiliki jarak tetap
+	result := checkEqualSpacing(input)
+	fmt.Println(result)
+}
+```
+## Output:<br/> ![image](https://github.com/user-attachments/assets/f16d6998-8101-440a-88f7-95a65100ea55)
+
+Program di atas membaca bilangan bulat hingga ditemukan bilangan negatif, mengurutkan bilangan tersebut dengan algoritma insertion sort, lalu memeriksa apakah jarak antar elemen di array yang sudah diurutkan konsisten. Hasil akhirnya menampilkan array yang sudah diurutkan dan status jaraknya.
+
+## III. UNGUIDED 
+
+### 1. Belakangan diketahui ternyata Hercules itu tidak berani menyeberang jalan, maka selalu diusahakan agar hanya menyeberang jalan sesedikit mungkin, hanya di ujung jalan. Karena nomor rumah sisi kiri jalan selalu ganjil dan sisi kanan jalan selalu genap, maka buatlah program kerabat dekat yang akan menampilkan nomor rumah mulai dari nomor yang ganjil lebih dulu terurut membesar dan kemudian menampilkan nomor rumah dengan nomor genap terurut mengecil.<br/> Format Masukan: masih persis sama seperti sebelumnya.<br/> Keluaran: terdiri dari n baris, yaitu rangkaian rumah kerabatnya terurut membesar untuk nomor ganjil, diikuti dengan terurut mengecil untuk nomor genap, di masing-masing daerah.<br/> ![image](https://github.com/user-attachments/assets/950d0183-c431-448e-8ce8-b03a3651ca03) <br/> Keterangan: Terdapat 3 daerah dalam contoh masukan. Baris kedua berisi campuran bilangan ganjil dan genap. Baris berikutnya hanya berisi bilangan ganjil, dan baris terakhir hanya berisi bilangan genap.<br/> 
+### Petunjuk:
+### - Waktu pembacaan data, bilangan ganjil dan genap dipisahkan ke dalam dua array yang berbeda, untuk kemudian masing-masing diurutkan tersendiri.
+### - Atau, tetap disimpan dalam satu array, diurutkan secara keseluruhan. Tetapi pada waktu pencetakan, mulai dengan mencetak semua nilai ganjil lebih dulu, kemudian setelah selesai cetaklah semua nilai genapnya.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// Fungsi untuk melakukan selection sort
+func selectionSort(arr []int, ascending bool) {
+	n := len(arr)
+	for i := 0; i < n-1; i++ {
+		minIndex := i
+		for j := i + 1; j < n; j++ {
+			if ascending && arr[j] < arr[minIndex] {
+				minIndex = j
+			} else if !ascending && arr[j] > arr[minIndex] {
+				minIndex = j
+			}
+		}
+		// Tukar elemen
+		arr[i], arr[minIndex] = arr[minIndex], arr[i]
+	}
+}
+
+func main() {
+	var n, num int
+
+	fmt.Print("Masukkan jumlah daerah: ")
+	fmt.Scan(&n)
+
+	for i := 0; i < n; i++ {
+		fmt.Printf("Masukkan bilangan untuk daerah %d (akhiri dengan bilangan negatif):\n", i+1)
+		var oddNumbers, evenNumbers []int
+
+		// Input bilangan hingga ditemukan bilangan negatif
+		for {
+			fmt.Scan(&num)
+			if num < 0 {
+				break
+			}
+			if num%2 == 0 {
+				evenNumbers = append(evenNumbers, num)
+			} else {
+				oddNumbers = append(oddNumbers, num)
+			}
+		}
+
+		// Urutkan ganjil secara ascending dan genap secara descending
+		selectionSort(oddNumbers, true)
+		selectionSort(evenNumbers, false)
+
+		// Cetak hasil
+		fmt.Printf("Hasil untuk daerah %d:\n", i+1)
+		for _, val := range oddNumbers {
+			fmt.Print(val, " ")
+		}
+		for _, val := range evenNumbers {
+			fmt.Print(val, " ")
+		}
+		fmt.Println()
+	}
+}
+```
+## Output:<br/> ![image](https://github.com/user-attachments/assets/d8d6113c-87c2-4582-95a4-74dbed59165b)
+
+Program di atas dibuat untuk membaca input bilangan dari beberapa daerah, memisahkan bilangan ganjil dan genap, lalu mengurutkannya sebelum mencetak hasilnya. Program meminta pengguna memasukkan jumlah daerah dan kemudian untuk setiap daerah, pengguna memasukkan bilangan satu per satu hingga bilangan negatif dimasukkan, yang menandakan akhir input. Bilangan ganjil dan genap dipisahkan ke dalam array terpisah. Program kemudian mengurutkan bilangan ganjil secara menaik dan bilangan genap secara menurun menggunakan algoritma selection sort. Setelah proses pengurutan selesai, program mencetak bilangan ganjil diikuti dengan bilangan genap dalam urutan yang telah diatur.
 
 ### 2. 
-
-
-
 
 
 
