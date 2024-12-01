@@ -167,7 +167,7 @@ func main() {
 ![Screenshot 2024-12-01 200251](https://github.com/user-attachments/assets/a1198b66-4da0-4be6-a73d-ee475ce1fedc)
 
 ##### Deskripsi Program
-Program ini dibuat untuk mengurutkan sekumpulan bilangan bulat yang diinput pengguna, kemudian memeriksa apakah selisih antara bilangan-bilangan yang berdekatan dalam urutan tersebut selalu konstan.
+Program ini dibuat untuk mengurutkan sekumpulan bilangan bulat yang diinput user, kemudian memeriksa apakah selisih antara bilangan-bilangan yang berdekatan dalam urutan tersebut selalu konstan.
 
 
 <br></br>
@@ -234,7 +234,7 @@ func main() {
 ![Screenshot 2024-12-01 230313](https://github.com/user-attachments/assets/bad4a128-c68a-4d36-80a9-efbaf6906667)
 
 ##### Deskripsi Program
-Program ini dirancang untuk mengurutkan nomor rumah kerabat dari berbagai daerah. Pengguna akan diminta memasukkan jumlah daerah dan jumlah nomor rumah untuk setiap daerah. Kemudian, program akan mengurutkan nomor rumah tersebut berdasarkan dua kriteria: nomor rumah ganjil akan diprioritaskan lebih dulu, dan jika ada nomor rumah dengan paritas yang sama, maka nomor rumah yang lebih kecil akan diletakkan di depan. Algoritma pengurutan yang digunakan adalah Selection Sort, yang secara efisien menemukan elemen terkecil pada setiap iterasi dan menukarnya dengan elemen pertama yang belum terurut.
+Program ini dibuat untuk mengurutkan nomor rumah kerabat dari berbagai daerah. User akan diminta memasukkan jumlah daerah dan jumlah nomor rumah untuk setiap daerah. Kemudian, program akan mengurutkan nomor rumah tersebut berdasarkan dua kriteria: nomor rumah ganjil akan diprioritaskan lebih dulu, dan jika ada nomor rumah dengan paritas yang sama, maka nomor rumah yang lebih kecil akan diletakkan di depan.
 
 ##### 2. Kompetisi pemrograman yang baru saja berlalu diikuti oleh 17 tim dari berbagai perguruan tinggi ternama. Dalam kompetisi tersebut, setiap tim berlomba untuk menyelesaikan sebanyak mungkin problem yang diberikan. Dari 13 problem yang diberikan, ada satu problem yang menarik. Problem tersebut mudah dipahami, hampir semua tim mencoba untuk menyelesaikannya, tetapi hanya 3 tim yang berhasil. Apa sih problemnya?
 
@@ -299,7 +299,7 @@ func main() {
 ![Screenshot 2024-12-01 231020](https://github.com/user-attachments/assets/2a7ab9db-e75b-48d1-a716-389298c3187b)
 
 ##### Deskripsi Program
-Program ini dirancang untuk menghitung median dari serangkaian bilangan bulat yang dimasukkan oleh pengguna. Pengguna dapat terus memasukkan bilangan hingga memasukkan nilai -5313 sebagai tanda berhenti. Setiap kali pengguna memasukkan angka 0, program akan mengurutkan semua bilangan yang telah dimasukkan menggunakan algoritma Insertion Sort, kemudian menghitung dan menampilkan nilai mediannya. Nilai median merupakan nilai tengah dari suatu kumpulan data yang telah diurutkan. Jika jumlah data genap, maka median adalah rata-rata dari dua nilai tengah.
+Program ini dapat menghitung median dari serangkaian bilangan bulat yang dimasukkan oleh user. User dapat terus memasukkan bilangan hingga memasukkan nilai -5313 sebagai tanda berhenti. Setiap kali user memasukkan angka 0, program akan mengurutkan semua bilangan yang telah dimasukkan menggunakan algoritma Insertion Sort, kemudian menghitung dan menampilkan nilai mediannya.
 
 ##### 3. Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
 ![Screenshot 2024-12-01 202609](https://github.com/user-attachments/assets/536f36d1-d375-40e9-b7de-3d51f2869f29)
@@ -420,7 +420,7 @@ func main() {
 ![Screenshot 2024-12-01 232843](https://github.com/user-attachments/assets/5ee12109-f56f-436c-a2c0-fb6e584b02b4)
 
 ##### Deskripsi Program
-Program ini dirancang untuk mengelola data buku dalam sebuah perpustakaan sederhana. Pengguna dapat memasukkan data buku secara manual, lalu program akan mengurutkan buku berdasarkan rating, mencari buku berdasarkan rating, serta menampilkan buku dengan rating tertinggi. Program ini memanfaatkan struktur data array untuk menyimpan informasi buku dan menggunakan algoritma pengurutan serta pencarian biner untuk meningkatkan efisiensi. Fitur-fitur utama program ini meliputi penambahan data buku, pencarian buku berdasarkan rating, pengurutan buku berdasarkan rating, dan tampilan buku dengan rating tertinggi.
+Program ini dirancang untuk mengelola data buku dalam sebuah perpustakaan. User dapat memasukkan data buku secara manual, lalu program akan mengurutkan buku berdasarkan rating, mencari buku berdasarkan rating, serta menampilkan buku dengan rating tertinggi. Fitur-fitur utamanya meliputi penambahan data buku, pencarian buku berdasarkan rating, pengurutan buku berdasarkan rating, dan tampilan buku dengan rating tertinggi.
 
 ### Referensi
 [1] Sandria, Y. A., Nurhayoto, M. R. A., Ramadhani, L., Harefa, R. S., & Syahputra, A. (2023). Penerapan Algoritma Selection Sort untuk Melakukan Pengurutan Data dalam Bahasa Pemrograman PHP. Hello World Jurnal Ilmu Komputer, 1(4), 190-194.
