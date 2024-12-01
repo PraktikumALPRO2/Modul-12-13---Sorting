@@ -1,0 +1,66 @@
+package main
+
+import "fmt"
+
+func urutnaik(arr []int, n int) {
+	for i := 0; i < n-1; i++ {
+		temp := i
+			for j := i + 1; j < n; j++ {
+			if arr[j] < arr[temp] {
+				temp = j
+			}
+		}
+		arr[i], arr[temp] = arr[temp], arr[i]
+	}
+}
+
+func urutturun(arr []int, n int) {
+	for i := 0; i < n-1; i++ {
+		temp := i
+			for j := i + 1; j < n; j++ {
+			if arr[j] > arr[temp] {
+				temp = j
+			}
+		}
+		arr[i], arr[temp] = arr[temp], arr[i]
+	}
+}
+
+
+func main() {
+	var n int
+	fmt.Print("Masukkan jumlah daerah kerabat (n): ")
+	fmt.Scan(&n)
+
+	for daerah := 1; daerah <= n; daerah++ {
+		var m int
+		var nomorganjil, nomorgenap []int
+		
+		fmt.Printf("Masukkan jumlah nomor rumah kerabat untuk daerah %d: ", daerah)
+		fmt.Scan(&m)
+
+		arr := make([]int, m)
+		fmt.Printf("Masukkan %d nomor rumah kerabat: ", m)
+		for i := 0; i < m; i++ {
+			fmt.Scan(&arr[i])
+		}
+
+		for _, nomorrumah := range arr {
+			if nomorrumah%2 != 0 {
+				nomorganjil = append(nomorganjil, nomorrumah)
+			} else {
+				nomorgenap = append(nomorgenap, nomorrumah)
+			}
+		}
+
+		urutnaik(nomorganjil, len(nomorganjil))
+		urutturun(nomorgenap, len(nomorgenap))
+		ruterumah := append(nomorganjil, nomorgenap...)
+
+		fmt.Printf("Nomor rumah terurut untuk daerah %d: ", daerah)
+		for _, num := range ruterumah {
+			fmt.Printf("%d ", num)
+		}
+		fmt.Println()
+	}
+}
