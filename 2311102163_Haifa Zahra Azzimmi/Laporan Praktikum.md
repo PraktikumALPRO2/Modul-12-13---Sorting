@@ -1,4 +1,4 @@
-![code 12](https://github.com/user-attachments/assets/73db1a99-c7ca-4880-b610-c4fba1d0d4dc)<h2 align="center"><strong>LAPORAN PRAKTIKUM</strong></h2>
+<h2 align="center"><strong>LAPORAN PRAKTIKUM</strong></h2>
 <h2 align="center"><strong>ALGORITMA DAN PEMROGRAMAN 2</strong></h2>
 
 <br>
