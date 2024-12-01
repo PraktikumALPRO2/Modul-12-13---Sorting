@@ -19,7 +19,8 @@
 <br></br>
 
 #### I. DASAR TEORI
-####
+#### 1. Selection Sort
+Selection Sort adalah suatu metode pengurutan yang membandingkan elemen yang sekarang dengan elemen berikutnya sampai ke elemen yang terakhir. Jika ditemukan elemen lain yang lebih kecil dari elemen sekarang maka dicatat posisinya dan langsung ditukar. Metode selection sort adalah melakukan pemilihan dari suatu nilai yang terkecil dan kemudian menukarnya dengan elemen paling awal, lalu membandingkan dengan elemen yang sekarang dengan elemen berikutnya sampai dengan elemen terakhir, perbandingan dilakukan terus sampai tidak ada lagi pertukaran data
 
 <br></br>
 
@@ -91,4 +92,5 @@
 
 
 ### Referensi
-[1] Donovan, A., Kernighan, B. (2015). The Go Programming Language. United Kingdom: Pearson Education.
+[1] Sandria, Y. A., Nurhayoto, M. R. A., Ramadhani, L., Harefa, R. S., & Syahputra, A. (2023). Penerapan Algoritma Selection Sort untuk Melakukan Pengurutan Data dalam Bahasa Pemrograman PHP. Hello World Jurnal Ilmu Komputer, 1(4), 190-194.
+[2] 
