@@ -1,4 +1,4 @@
-<h2 align="center"><strong>LAPORAN PRAKTIKUM</strong></h2>
+![code 12](https://github.com/user-attachments/assets/73db1a99-c7ca-4880-b610-c4fba1d0d4dc)<h2 align="center"><strong>LAPORAN PRAKTIKUM</strong></h2>
 <h2 align="center"><strong>ALGORITMA DAN PEMROGRAMAN 2</strong></h2>
 
 <br>
@@ -78,7 +78,7 @@ import (
 	"fmt"
 )
 
-// Fungsi untuk mengurutkan array menggunakan Selection Sort
+// Fungsi untuk mengurutkan array menggunakan selection sort
 func selectionSort(arr []int, n int) {
 	for i := 0; i < n-1; i++ {
 		idxMin := i
@@ -87,65 +87,42 @@ func selectionSort(arr []int, n int) {
 				idxMin = j
 			}
 		}
-		// Tukar elemen terkecil dengan elemen pada indeks i
 		arr[i], arr[idxMin] = arr[idxMin], arr[i]
 	}
 }
 
 func main() {
 	var n int
-
-	// Meminta jumlah daerah kerabat
-	fmt.Println("Masukkan jumlah daerah kerabat (n):")
+	fmt.Print("Masukkan jumlah daerah kerabat (n) : ")
 	fmt.Scan(&n)
 
-	// Validasi input jumlah daerah harus lebih besar dari 0
-	if n <= 0 {
-		fmt.Println("Jumlah daerah kerabat harus lebih besar dari 0.")
-		return
-	}
-
-	// Loop untuk setiap daerah
 	for i := 0; i < n; i++ {
 		var m int
-
-		// Meminta jumlah rumah kerabat di daerah ke-i
-		fmt.Printf("Masukkan jumlah rumah kerabat di daerah ke-%d (m): ", i+1)
+		fmt.Printf("\nMasukkan jumlah nomor rumah kerabat untuk daerah %d : ", i+1)
 		fmt.Scan(&m)
 
-		// Validasi input jumlah rumah kerabat harus lebih besar dari 0
-		if m <= 0 {
-			fmt.Printf("Jumlah rumah kerabat di daerah ke-%d harus lebih besar dari 0.\n", i+1)
-			continue
-		}
-
-		// Membuat slice untuk menyimpan nomor rumah kerabat
 		arr := make([]int, m)
-
-		// Meminta input nomor rumah kerabat
-		fmt.Printf("Masukkan %d nomor rumah kerabat untuk daerah ke-%d: ", m, i+1)
+		fmt.Printf("Masukkan %d nomor rumah kerabat : ", m)
 		for j := 0; j < m; j++ {
 			fmt.Scan(&arr[j])
 		}
-
-		// Mengurutkan nomor rumah menggunakan Selection Sort
 		selectionSort(arr, m)
 
-		// Menampilkan hasil pengurutan
-		fmt.Printf("Nomor rumah terurut untuk daerah ke-%d: ", i+1)
+		// Tampilkan nomor rumah terurut
+		fmt.Printf("Nomor rumah terurut untuk daerah %d : ", i+1)
 		for _, num := range arr {
 			fmt.Printf("%d ", num)
 		}
 		fmt.Println()
 	}
-
-	fmt.Println("Pengurutan selesai.")
 }
 ```
 
 ### Output:
+![image](https://github.com/user-attachments/assets/03f3b5ef-550d-4702-81d8-b70aedf92cc7)
 
 ### Full code Screenshot :
+![code 10](https://github.com/user-attachments/assets/dca87620-c759-41e0-897c-7441c6fc1e9f)
 
 ### Deskripsi Program : 
 
@@ -248,8 +225,10 @@ func main() {
 }
 ```
 ### Output:
+![image](https://github.com/user-attachments/assets/3490294e-3824-4e97-9af1-a087935128a3)
 
 ### Full code Screenshot :
+![code 11](https://github.com/user-attachments/assets/c5d2e95a-11fd-4509-adb1-40358e922eaa)
 
 ### Deskripsi Program : 
 
@@ -267,12 +246,65 @@ nomor ganjil, diikuti dengan terurut mengecil untuk nomor genap, di masing-masin
 
 ### Source Code :
 ```go
+// Haifa Zahra Azzimmi
+// 2311102163
+// S1 IF 11 5
+
+package main
+
+import (
+	"fmt"
+	"sort"
+)
+
+func main() {
+	var jumlahDaerah int
+	fmt.Print("Masukkan jumlah daerah kerabat: ")
+	fmt.Scan(&jumlahDaerah)
+
+	for i := 1; i <= jumlahDaerah; i++ {
+		var jumlahRumah int
+		fmt.Printf("\nMasukkan jumlah rumah di daerah %d: ", i)
+		fmt.Scan(&jumlahRumah)
+
+		nomorRumah := make([]int, jumlahRumah)
+		fmt.Printf("Masukkan %d nomor rumah: ", jumlahRumah)
+		for j := 0; j < jumlahRumah; j++ {
+			fmt.Scan(&nomorRumah[j])
+		}
+
+		var ganjil []int
+		var genap []int
+		for _, nomor := range nomorRumah {
+			if nomor%2 == 0 {
+				genap = append(genap, nomor)
+			} else {
+				ganjil = append(ganjil, nomor)
+			}
+		}
+
+		sort.Ints(ganjil)
+		sort.Sort(sort.Reverse(sort.IntSlice(genap)))
+
+		// Tampilkan hasil
+		fmt.Printf("\nNomor rumah terurut untuk daerah %d:\n", i)
+		for _, nomor := range ganjil {
+			fmt.Printf("%d ", nomor)
+		}
+		for _, nomor := range genap {
+			fmt.Printf("%d ", nomor)
+		}
+		fmt.Println()
+	}
+}
 
 ```
 
 ### Output:
+![image](https://github.com/user-attachments/assets/8e4b1521-6b79-4de8-a13a-13d0647517cf)
 
 ### Full code Screenshot :
+![code 12](https://github.com/user-attachments/assets/173d9ef2-3b9f-49ff-b361-22e5b52ae267)
 
 
 ### Deskripsi Program : 
@@ -289,12 +321,69 @@ termasuk data yang dicari mediannya. Data masukan diakhiri dengan bilangan bulat
 
 ### Source Code :
 ```go
+// Haifa Zahra Azzimmi
+// 2311102163
+// S1 IF 11 5
+
+package main
+
+import "fmt"
+
+func sortSlice(slice []int) {
+    panjangSlice := len(slice)
+    for i := 0; i < panjangSlice-1; i++ {
+        indeksMinimum := i
+        for j := i + 1; j < panjangSlice; j++ {
+            if slice[j] < slice[indeksMinimum] {
+                indeksMinimum = j
+            }
+        }
+        slice[i], slice[indeksMinimum] = slice[indeksMinimum], slice[i]
+    }
+}
+
+func cariMedian(slice []int) int {
+    jumlahElemen := len(slice)
+    if jumlahElemen%2 == 1 {
+        return slice[jumlahElemen/2]
+    }
+    return (slice[(jumlahElemen/2)-1] + slice[jumlahElemen/2]) / 2
+}
+
+func main() {
+    var daftarAngka []int
+    fmt.Print("Masukkan sejumlah angka (akhiri dengan -5313): ")
+
+    for {
+        var angka int
+        _, err := fmt.Scan(&angka)
+
+        if angka == -5313 {
+            break
+        }
+
+        if err != nil {
+            fmt.Println("Input tidak valid, coba lagi.")
+            break
+        }
+
+        if angka == 0 {
+            sortSlice(daftarAngka)
+            fmt.Printf("Nilai median: %d\n", cariMedian(daftarAngka))
+        } else {
+            // Tambahkan angka ke slice
+            daftarAngka = append(daftarAngka, angka)
+        }
+    }
+}
 
 ```
 
 ### Output:
+![image](https://github.com/user-attachments/assets/06e90ff8-17a9-4fbf-b577-5c005cd3842a)
 
 ### Full code Screenshot :
+![code 13](https://github.com/user-attachments/assets/cf123bf6-c547-4b6d-a554-e7b92b1007de)
 
 ### Deskripsi Program : 
 
@@ -302,6 +391,7 @@ termasuk data yang dicari mediannya. Data masukan diakhiri dengan bilangan bulat
 
 ### 3.Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
 
+![image](https://github.com/user-attachments/assets/24629392-d82d-4936-810b-37a7a0b03b41)
 
 **Masukan** terdiri dari beberapa baris. Baris pertama adalah bilangan bulat N yang menyatakan 
 banyaknya data buku yang ada di dalam perpustakaan. N baris berikutnya, masing-masingnya 
@@ -313,21 +403,129 @@ bulat yang menyatakan rating buku yang akan dicari.
 
 ### Source Code :
 ```go
+// Haifa Zahra Azzimmi
+// 2311102163
+// S1 IF 11 5
+
+package main
+
+import "fmt"
+
+const maxBooks = 7919
+
+// Struktur Buku untuk menyimpan informasi buku
+type Buku struct {
+	kode, judul, penulis, penerbit string
+	eksemplar, tahun, rating       int
+}
+
+// Array KoleksiBuku untuk menyimpan daftar buku
+type KoleksiBuku [maxBooks]Buku
+
+// Fungsi untuk menambahkan buku ke dalam koleksi
+func tambahBuku(koleksi *KoleksiBuku, jumlah *int) {
+	fmt.Print("Masukkan jumlah buku yang ingin didaftarkan: ")
+	fmt.Scan(jumlah)
+
+	for i := 0; i < *jumlah; i++ {
+		fmt.Printf("\nMasukkan data buku ke-%d (kode, judul, penulis, penerbit, eksemplar, tahun, rating):\n", i+1)
+		fmt.Scan(&koleksi[i].kode, &koleksi[i].judul, &koleksi[i].penulis, &koleksi[i].penerbit,
+			&koleksi[i].eksemplar, &koleksi[i].tahun, &koleksi[i].rating)
+	}
+}
+
+// Fungsi untuk menampilkan buku dengan rating tertinggi
+func bukuFavorit(koleksi KoleksiBuku, jumlah int) {
+	if jumlah == 0 {
+		fmt.Println("Tidak ada buku yang terdaftar.")
+		return
+	}
+
+	favorit := koleksi[0]
+	for i := 1; i < jumlah; i++ {
+		if koleksi[i].rating > favorit.rating {
+			favorit = koleksi[i]
+		}
+	}
+
+	fmt.Println("\nBuku Favorit:")
+	fmt.Printf("Judul: %s, Penulis: %s, Penerbit: %s, Tahun: %d, Rating: %d\n",
+		favorit.judul, favorit.penulis, favorit.penerbit, favorit.tahun, favorit.rating)
+}
+
+// Fungsi untuk mengurutkan buku berdasarkan rating secara menurun
+func urutkanBuku(koleksi *KoleksiBuku, jumlah int) {
+	for i := 1; i < jumlah; i++ {
+		buku := koleksi[i]
+		j := i - 1
+
+		for j >= 0 && koleksi[j].rating < buku.rating {
+			koleksi[j+1] = koleksi[j]
+			j--
+		}
+		koleksi[j+1] = buku
+	}
+}
+
+// Fungsi untuk menampilkan 5 buku dengan rating tertinggi
+func tampilkanTop5(koleksi KoleksiBuku, jumlah int) {
+	fmt.Println("\n5 Buku Dengan Rating Tertinggi:")
+	batas := 5
+	if jumlah < 5 {
+		batas = jumlah
+	}
+
+	for i := 0; i < batas; i++ {
+		fmt.Printf("%d. %s (Rating: %d)\n", i+1, koleksi[i].judul, koleksi[i].rating)
+	}
+}
+
+// Fungsi untuk mencari buku berdasarkan rating
+func cariBukuByRating(koleksi KoleksiBuku, jumlah, rating int) {
+	ditemukan := false
+	fmt.Printf("\nMencari Buku dengan Rating %d:\n", rating)
+
+	for i := 0; i < jumlah; i++ {
+		if koleksi[i].rating == rating {
+			ditemukan = true
+			fmt.Printf("Judul: %s, Penulis: %s, Penerbit: %s, Tahun: %d, Eksemplar: %d, Rating: %d\n",
+				koleksi[i].judul, koleksi[i].penulis, koleksi[i].penerbit,
+				koleksi[i].tahun, koleksi[i].eksemplar, koleksi[i].rating)
+		}
+	}
+
+	if !ditemukan {
+		fmt.Println("Tidak ada buku dengan rating tersebut.")
+	}
+}
+
+func main() {
+	var koleksi KoleksiBuku
+	var jumlahBuku, ratingPencarian int
+
+	// Menambahkan buku ke dalam koleksi
+	tambahBuku(&koleksi, &jumlahBuku)
+
+	// Menampilkan buku dengan rating tertinggi
+	bukuFavorit(koleksi, jumlahBuku)
+
+	// Mengurutkan buku berdasarkan rating dan menampilkan hasilnya
+	urutkanBuku(&koleksi, jumlahBuku)
+
+	// Menampilkan 5 buku dengan rating tertinggi
+	tampilkanTop5(koleksi, jumlahBuku)
+
+	// Mencari buku berdasarkan rating
+	fmt.Print("\nMasukkan rating yang ingin dicari: ")
+	fmt.Scan(&ratingPencarian)
+	cariBukuByRating(koleksi, jumlahBuku, ratingPencarian)
+}
 
 ```
 ### Output:
-Tampilan Inputan Buku:
-
-
-Tampilan Buku Terfavorite:
-
-
-Tampilan 5 Buku Dengan Rating Tertinggi:
-
-
-Tampilan Mencari Buku Dengan Rating:
-
+![image](https://github.com/user-attachments/assets/f9d93673-0303-4aa8-9794-d36bb9b50055)
 
 ### Full code Screenshot :
+![code 14](https://github.com/user-attachments/assets/eb9cd51d-6d74-4988-9aeb-194ec9927182)
 
 ### Deskripsi Program : 
