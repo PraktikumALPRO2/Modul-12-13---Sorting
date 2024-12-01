@@ -48,14 +48,19 @@
 
 ## Dasar Teori
 
-**Selection Sort**
+Algoritma Insertion Sort:
+- Konsep Dasar: Algoritma ini bekerja dengan cara membangun larik yang diurutkan satu per satu. Pada setiap iterasi, elemen saat ini disisipkan ke dalam posisi yang sesuai dalam larik yang sudah diurutkan sebelumnya.
+- Proses: Mulai dari elemen kedua, algoritma membandingkan elemen ini dengan elemen sebelumnya dan menukarnya jika perlu. Proses ini diulangi sampai semua elemen berada di tempat yang tepat.
+- Kompleksitas Waktu: O(n^2) dalam kasus terburuk, karena setiap elemen mungkin perlu dibandingkan dengan semua elemen sebelumnya.
+- Kelebihan: Mudah diimplementasikan dan efisien untuk larik kecil atau hampir terurut.
+- Kekurangan: Kurang efisien untuk larik besar yang acak.
 
-
-**Karakteristik**
-
-
-**Karakteristik**
-
+Algoritma Selection Sort:
+- Konsep Dasar: Algoritma ini bekerja dengan cara membagi larik menjadi dua bagian: bagian yang sudah diurutkan dan bagian yang belum diurutkan. Pada setiap iterasi, algoritma menemukan elemen minimum dari bagian yang belum diurutkan dan menukarnya dengan elemen pertama dari bagian yang belum diurutkan.
+- Proses: Algoritma mencari elemen terkecil dalam larik dan menukarnya dengan elemen pertama. Kemudian mencari elemen terkecil kedua dan menukarnya dengan elemen kedua, dan seterusnya.
+- Kompleksitas Waktu: O(n^2) dalam semua kasus, karena setiap elemen dibandingkan dengan semua elemen lainnya.
+- Kelebihan: Mudah diimplementasikan dan tidak memerlukan ruang tambahan.
+- Kekurangan: Kurang efisien dibandingkan algoritma pengurutan lain untuk larik besar.
 
 ## Guided 
 
@@ -125,7 +130,7 @@ func main() {
 ![code 10](https://github.com/user-attachments/assets/dca87620-c759-41e0-897c-7441c6fc1e9f)
 
 ### Deskripsi Program : 
-
+Program ini mengurutkan nomor rumah kerabat di beberapa daerah menggunakan algoritma selection sort. Pertama, program meminta pengguna untuk memasukkan jumlah daerah kerabat. Setelah itu, untuk setiap daerah, program meminta jumlah nomor rumah kerabat dan berat masing-masing nomor rumah tersebut. Algoritma selection sort kemudian digunakan untuk mengurutkan nomor rumah di setiap daerah secara berurutan. Terakhir, program menampilkan nomor rumah yang sudah terurut untuk setiap daerah.
 
    
 ### 2. Buatlah sebuah program yang digunakan untuk membaca data integer seperti contoh yang diberikan di bawah ini, kemudian diurutkan (menggunakan metoda insertion sort), dan memeriksa apakah data yang terurut berjarak sama terhadap data sebelumnya. 
@@ -231,8 +236,7 @@ func main() {
 ![code 11](https://github.com/user-attachments/assets/c5d2e95a-11fd-4509-adb1-40358e922eaa)
 
 ### Deskripsi Program : 
-
-
+Program ini mengurutkan data integer yang dimasukkan oleh pengguna menggunakan metode Insertion Sort. Pengguna diminta memasukkan angka-angka positif dan menandai akhir input dengan angka negatif. Setelah semua data diperoleh, program mengurutkan elemen-elemen tersebut dengan menggunakan algoritma Insertion Sort, yang memposisikan setiap elemen pada tempat yang sesuai. Selain itu, program juga memeriksa apakah selisih antara elemen-elemen dalam array yang sudah diurutkan adalah konstan. Akhirnya, program menampilkan array yang telah diurutkan dan menyatakan apakah data tersebut memiliki selisih yang tetap atau tidak.
 
 
 ## Unguided 
@@ -306,10 +310,8 @@ func main() {
 ### Full code Screenshot :
 ![code 12](https://github.com/user-attachments/assets/173d9ef2-3b9f-49ff-b361-22e5b52ae267)
 
-
 ### Deskripsi Program : 
-
-
+Program ini bertujuan untuk mengurutkan nomor rumah di beberapa daerah berdasarkan keparitasan (ganjil atau genap). Pertama, pengguna diminta untuk memasukkan jumlah daerah kerabat dan jumlah rumah di setiap daerah. Setelah itu, nomor rumah yang dimasukkan akan dipisahkan menjadi dua kelompok: ganjil dan genap. Kelompok ganjil diurutkan secara menaik, sementara kelompok genap diurutkan secara menurun. Pada akhirnya, program menampilkan nomor rumah yang sudah diurutkan untuk setiap daerah, dengan nomor ganjil muncul lebih dulu diikuti oleh nomor genap.
 
 ### 2.Kompetisi pemrograman yang baru saja berlalu diikuti oleh 17 tim dari berbagai perguruan tinggi ternama. Dalam kompetisi tersebut, setiap tim berlomba untuk menyelesaikan sebanyak mungkin problem yang diberikan. Dari 13 problem yang diberikan, ada satu problem yang menarik. Problem tersebut mudah dipahami, hampir semua tim mencoba untuk menyelesaikannya, tetapi hanya 3 tim yang berhasil. Apa sih problemnya? "Median adalah nilai tengah dari suatu koleksi data yang sudah terurut. Jika jumlah data genap, maka nilai median adalah rerata dari kedua nilai tengahnya. Pada problem ini, semua data merupakan bilangan bulat positif, dan karenanya rerata nilai tengah dibulatkan ke bawah." Buatlah program median yang mencetak nilai median terhadap seluruh data yang sudah terbaca, jika data yang dibaca saat itu adalah 0. 
 
@@ -386,7 +388,7 @@ func main() {
 ![code 13](https://github.com/user-attachments/assets/cf123bf6-c547-4b6d-a554-e7b92b1007de)
 
 ### Deskripsi Program : 
-
+Program ini mengurutkan angka yang dimasukkan oleh pengguna dan menghitung median. Pengguna memasukkan angka sampai mereka mengetikkan -5313 untuk berhenti. Setiap angka ditambahkan ke dalam daftar. Jika angka 0 dimasukkan, program mengurutkan daftar dan menghitung median. Program ini kemudian menampilkan median dari daftar yang diurutkan. Program ini memverifikasi input dan menampilkan pesan kesalahan jika ada input yang tidak valid.
 
 
 ### 3.Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
@@ -529,3 +531,4 @@ func main() {
 ![code 14](https://github.com/user-attachments/assets/eb9cd51d-6d74-4988-9aeb-194ec9927182)
 
 ### Deskripsi Program : 
+Program ini digunakan untuk mengelola koleksi buku, termasuk menambahkan buku, menemukan buku dengan rating tertinggi, mengurutkan buku berdasarkan rating, menampilkan lima buku dengan rating tertinggi, dan mencari buku berdasarkan rating tertentu. Pengguna diminta memasukkan data buku yang terdiri dari kode, judul, penulis, penerbit, eksemplar, tahun, dan rating. Buku dengan rating tertinggi ditampilkan sebagai buku favorit. Selain itu, program mengurutkan buku berdasarkan rating secara menurun dan menampilkan lima buku dengan rating tertinggi. Program juga memungkinkan pengguna untuk mencari buku dengan rating tertentu dan menampilkan informasi tentang buku-buku tersebut jika ditemukan.
