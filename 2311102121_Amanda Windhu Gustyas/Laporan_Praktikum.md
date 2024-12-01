@@ -1,6 +1,6 @@
 # <h2 align="center">LAPORAN PRAKTIKUM</h2>
 # <h2 align="center">ALGORITMA DAN PEMROGRAMAN 2</h2>
-# <h2 align="center">MODUL </h2>
+# <h2 align="center">MODUL 12-13</h2>
 # <h2 align="center">PENGURUTAN DATA</h2>
 <p align="center">
     <img src="https://github.com/user-attachments/assets/3ccfed0b-72d1-4349-ac08-c4dce379c827" alt="Gambar">
@@ -263,8 +263,99 @@ func main() {
 
 Program di atas dibuat untuk membaca input bilangan dari beberapa daerah, memisahkan bilangan ganjil dan genap, lalu mengurutkannya sebelum mencetak hasilnya. Program meminta pengguna memasukkan jumlah daerah dan kemudian untuk setiap daerah, pengguna memasukkan bilangan satu per satu hingga bilangan negatif dimasukkan, yang menandakan akhir input. Bilangan ganjil dan genap dipisahkan ke dalam array terpisah. Program kemudian mengurutkan bilangan ganjil secara menaik dan bilangan genap secara menurun menggunakan algoritma selection sort. Setelah proses pengurutan selesai, program mencetak bilangan ganjil diikuti dengan bilangan genap dalam urutan yang telah diatur.
 
-### 2. 
+### 2. Kompetisi pemrograman yang baru saja berlalu diikuti oleh 17 tim dari berbagai perguruan tinggi ternama. Dalam kompetisi tersebut, setiap tim berlomba untuk menyelesaikan sebanyak mungkin problem yang diberikan. Dari 13 problem yang diberikan, ada satu problem yang menarik. Problem tersebut mudah dipahami, hampir semua tim mencoba untuk menyelesaikannya, tetapi hanya 3 tim yang berhasil. Apa sih problemanya?<br/>
+### "Median adalah nilai tengah dari suatu koleksi data yang sudah terurut. Jika jumlah data genap, maka nilai median adalah rata-rata dari kedua nilai tengahnya. Pada problem ini, semua data merupakan bilangan bulat positif, dan karenanya rata-rata nilai tengah dibulatkan ke bawah."<br/>
+#### Buatlah program median yang mencetak nilai median terhadap seluruh data yang sudah terbaca, jika data yang dibaca saat itu adalah 0.
+### Masukan berbentuk rangkaian bilangan bulat. Masukan tidak akan berisi lebih dari 1000000 data, tidak termasuk bilangan 0. Data 0 merupakan tanda bahwa median harus dicetak, tidak termasuk data yang dicari mediannya. Data masukan diakhiri dengan bilangan bulat -5313.
+### Keluaran adalah median yang diminta, satu data per baris.<br/>
+![image](https://github.com/user-attachments/assets/82520e81-fff5-4a78-a675-08b2d79af437)<br/>
+### Keterangan:<br/> Sampai bilangan 0 yang pertama, data terbaca adalah 7 23 11, setelah tersusun: 7 11 23, maka median saat itu adalah 11.<br/> Sampai bilangan 0 yang kedua, data adalah 7 23 11 5 19 2 29 3 13 17, setelah tersusun diperoleh: 2 3 5 7 11 13 17 19 23 29. Karena ada 10 data, genap, maka median adalah (11+13)/2 = 12.<br/>
+### Petunjuk:<br/> Untuk setiap data bukan 0 (dan bukan marker -5313541) simpan ke dalam array. Dan setiap kali menemukan bilangan 0, urutkanlah data yang sudah tersimpan dengan menggunakan metode insertion sort dan ambil mediannya.
 
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func main() {
+	var data []int // Menyimpan data yang sudah terbaca
+	
+	// Membaca input dari stdin
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		input := scanner.Text()
+		num, err := strconv.Atoi(input)
+		if err != nil {
+			fmt.Println("Input tidak valid")
+			continue
+		}
+
+		// Jika angka -5313 ditemukan, hentikan program
+		if num == -5313 {
+			break
+		}
+
+		// Jika angka 0 ditemukan, hitung dan cetak median
+		if num == 0 {
+			if len(data) == 0 {
+				fmt.Println("Tidak ada data untuk menghitung median")
+				continue
+			}
+
+			selectionSort(data) // Mengurutkan data menggunakan selection sort
+			median := calculateMedian(data)
+			fmt.Printf("Mediannya adalah %d\n", median)
+		} else {
+			// Menambahkan data baru ke array
+			data = append(data, num)
+		}
+	}
+}
+
+// Fungsi untuk menghitung median
+func calculateMedian(arr []int) int {
+	length := len(arr)
+	if length%2 == 1 {
+		// Jika jumlah data ganjil, ambil nilai tengah
+		return arr[length/2]
+	} else {
+		// Jika jumlah data genap, ambil rata-rata dua nilai tengah dan bulatkan ke bawah
+		sum := arr[length/2-1] + arr[length/2]
+		return sum / 2
+	}
+}
+
+// Fungsi untuk mengurutkan array menggunakan selection sort
+func selectionSort(arr []int) {
+	n := len(arr)
+	for i := 0; i < n-1; i++ {
+		minIdx := i
+		for j := i + 1; j < n; j++ {
+			if arr[j] < arr[minIdx] {
+				minIdx = j
+			}
+		}
+		// Tukar elemen minimum dengan elemen pertama
+		arr[i], arr[minIdx] = arr[minIdx], arr[i]
+	}
+}
+```
+## Output:<br/> ![image](https://github.com/user-attachments/assets/a07dc677-be20-4bfc-9264-02586750fc5c)
+
+Program ini menghitung median dari serangkaian bilangan bulat positif yang diberikan sebagai input. Median adalah nilai tengah dari data yang telah diurutkan. Jika jumlah data ganjil, median adalah elemen tengah, sedangkan jika jumlah data genap, median dihitung sebagai rata-rata dari dua elemen tengah yang dibulatkan ke bawah. Program membaca input secara berurutan, menyimpan bilangan yang valid ke dalam array. Setiap kali angka 0 ditemukan, program mengurutkan data yang telah terkumpul menggunakan algoritma selection sort, lalu menghitung dan mencetak median. Ketika angka -5313 ditemukan, program berhenti memproses input.
+
+### 3. Sebuah program perpustakaan digunakan untuk mengelola data buku di dalam suatu perpustakaan. Misalnya terdefinisi struct dan array seperti berikut ini:
+![image](https://github.com/user-attachments/assets/2734f8f6-83de-48d1-a546-507f0e97096b)<br/>
+### Masukan: terdiri dari beberapa baris. Baris pertama adalah bilangan bulat N yang menyatakan banyaknya data buku yang ada di dalam perpustakaan. N baris berikutnya, masing-masingnya adalah data buku sesuai dengan atribut atau field pada struct. Baris terakhir adalah bilangan bulat yang menyatakan rating buku yang akan dicari.<br/>
+### Keluaran: terdiri dari beberapa baris. Baris pertama adalah data buku terfavorit, baris kedua adalah lima judul buku dengan rating tertinggi, selanjutnya baris terakhir adalah data buku yang dicari sesuai rating yang diberikan pada masukan baris terakhir.<br/>
+
+```go
+```
 
 
  
